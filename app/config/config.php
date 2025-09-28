@@ -79,7 +79,7 @@ $config['ENVIRONMENT']             = 'development';
 | WARNING: You MUST set this value!
 |
 */
-$config['base_url'] 				= '';
+$config['base_url'] 				= 'http://localhost/midternmProjectv2/';
 
 /*
 |--------------------------------------------------------------------------
@@ -88,13 +88,13 @@ $config['base_url'] 				= '';
 |
 | If you are using mod_rewrite to remove index.php in the URL set this
 | variable to blank.
-|
+|                                                                               
 */
 $config['index_page']               = 'index.php';
 
 /*
 |--------------------------------------------------------------------------
-| Error Logging Threshold
+| Error Logging Threshold                           
 |--------------------------------------------------------------------------
 |
 | You can enable error logging by setting a threshold over zero.
@@ -212,8 +212,8 @@ $config['language'] 				= 'en-US';
 $config['sess_driver']             = 'file';
 $config['sess_cookie_name']        = 'LLSession';
 $config['sess_expiration']         = 7200;
-$config['sess_save_path']          = '';
-$config['sess_match_ip']           = TRUE;
+$config['sess_save_path']          = '/tmp';
+$config['sess_match_ip']           = FALSE;
 $config['sess_match_fingerprint']  = TRUE;
 $config['sess_time_to_update']     = 300;
 $config['sess_regenerate_destroy'] = TRUE;
