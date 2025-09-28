@@ -79,7 +79,7 @@ $config['ENVIRONMENT']             = 'development';
 | WARNING: You MUST set this value!
 |
 */
-$config['base_url'] 				= 'http://localhost/midternmProjectv2/';
+$config['base_url'] 				= 'https://arellano-mylene-project.onrender.com/';
 
 /*
 |--------------------------------------------------------------------------
