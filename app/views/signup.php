@@ -273,7 +273,7 @@ f<!DOCTYPE html>
             </button>
 
             <div class="auth-footer">
-                Already have an account? <a href="<?= site_url('/')">Sign in here</a>
+                Already have an account? <a href="<?= site_url('/'); ?>">Sign in here</a>
             </div>
         </form>
     </div>
