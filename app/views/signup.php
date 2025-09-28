@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+f<!DOCTYPE html>
 <html lang="en" class="light">
 <head>
     <meta charset="UTF-8">
@@ -273,7 +273,7 @@
             </button>
 
             <div class="auth-footer">
-                Already have an account? <a href="signin.html">Sign in here</a>
+                Already have an account? <a href="<?= site_url('/')">Sign in here</a>
             </div>
         </form>
     </div>
