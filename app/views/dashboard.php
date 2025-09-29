@@ -3,558 +3,395 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard - Diprella</title>
+    <title>Dashboard - Diprella</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
     <style>
         :root {
-            /* Updated color scheme from teal to pink */
-            --pink-primary: #E91E63;
-            --pink-dark: #C2185B;
+            --pink-primary: #FF69B4;
+            --pink-dark: #E91E63;
+            --pink-light: #FFB6C1;
+            --rose: #FF1493;
             --coral: #FF6B6B;
-            --yellow: #FFE66D;
-            --gray-light: #F8F9FA;
-            --sidebar-width: 280px;
+            --gray-light: #FDF2F8;
+            --white: #FFFFFF;
         }
-        
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: #f8f9fa;
+            background: var(--gray-light);
         }
-        
-        .admin-container {
-            display: flex;
-            min-height: 100vh;
-        }
-        
-        /* Sidebar Styles */
-        .sidebar {
-            width: var(--sidebar-width);
-            /* Updated gradient to use pink colors */
-            background: linear-gradient(180deg, var(--pink-primary) 0%, var(--pink-dark) 100%);
-            color: white;
-            position: fixed;
-            height: 100vh;
-            overflow-y: auto;
-            z-index: 1000;
-        }
-        
-        .sidebar-header {
-            padding: 1.5rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            font-weight: 600;
-            font-size: 1.2rem;
-        }
-        
-        .logo-icon {
-            width: 32px;
-            height: 32px;
-            background: white;
-            border-radius: 6px;
-            margin-right: 0.75rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            /* Updated icon color to pink */
-            color: var(--pink-primary);
-        }
-        
-        .sidebar-nav {
+        .navbar {
+            background: white !important;
+            box-shadow: 0 2px 10px rgba(255, 105, 180, 0.2);
             padding: 1rem 0;
         }
-        
-        .nav-item {
-            margin-bottom: 0.5rem;
-        }
-        
-        .nav-link {
+        .navbar-brand {
             display: flex;
             align-items: center;
-            padding: 0.75rem 1.5rem;
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            border-left: 3px solid transparent;
-        }
-        
-        .nav-link:hover,
-        .nav-link.active {
-            color: white;
-            background: rgba(255, 255, 255, 0.1);
-            border-left-color: white;
-        }
-        
-        .nav-link i {
-            margin-right: 0.75rem;
-            width: 20px;
-        }
-        
-        /* Main Content */
-        .main-content {
-            margin-left: var(--sidebar-width);
-            flex: 1;
-            padding: 2rem;
-        }
-        
-        .header {
-            background: white;
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            display: flex;
-            justify-content: between;
-            align-items: center;
-        }
-        
-        .header-title {
-            color: #333;
-            font-size: 1.75rem;
             font-weight: 600;
-            margin: 0;
+            color: var(--pink-dark) !important;
         }
-        
-        .header-actions {
-            display: flex;
-            gap: 1rem;
-            margin-left: auto;
+        .logo-icon {
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(135deg, var(--pink-primary) 0%, var(--pink-dark) 100%);
+            border-radius: 4px;
+            margin-right: 0.5rem;
         }
-        
-        .btn-primary {
-            /* Updated button colors to pink */
-            background: var(--pink-primary);
+        .btn-logout {
+            background: linear-gradient(135deg, var(--rose) 0%, var(--pink-dark) 100%);
             border: none;
-            border-radius: 8px;
-            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            padding: 0.5rem 1.5rem;
+            font-weight: 600;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 20, 147, 0.3);
         }
-        
-        .btn-primary:hover {
-            /* Updated hover color to dark pink */
-            background: var(--pink-dark);
+        .btn-logout:hover {
+            background: linear-gradient(135deg, var(--pink-dark) 0%, var(--rose) 100%);
             transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 20, 147, 0.4);
         }
-        
-        /* Stats Cards */
-        .stats-row {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
+        .welcome-card {
+            background: linear-gradient(135deg, var(--pink-primary) 0%, var(--pink-dark) 100%);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3);
         }
-        
-        .stat-card {
+        .welcome-card::before {
+            content: '';
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            top: -30px;
+            right: -30px;
+        }
+        .welcome-card::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            bottom: -20px;
+            left: -20px;
+        }
+        .profile-card {
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(255, 105, 180, 0.15);
             background: white;
-            border-radius: 12px;
-            padding: 1.5rem;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
         }
-        
-        .stat-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .stat-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 10px;
+        .profile-picture {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
+            background: linear-gradient(135deg, var(--pink-primary) 0%, var(--pink-dark) 100%);
+            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.3);
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        .profile-picture img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .detail-card {
+            border: none;
+            border-radius: 15px;
+            background: white;
+            border-left: 4px solid var(--pink-primary);
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.1);
+        }
+        .detail-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 105, 180, 0.2);
+            border-left-color: var(--rose);
+        }
+        .detail-label {
+            color: var(--pink-dark);
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .detail-value {
+            color: #333;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        .stats-card {
+            background: white;
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.12);
+            transition: all 0.3s ease;
+            overflow: hidden;
+            position: relative;
+        }
+        .stats-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--pink-primary) 0%, var(--rose) 100%);
+        }
+        .stats-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(255, 105, 180, 0.25);
+        }
+        .stats-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
             margin-bottom: 1rem;
         }
-        
-        /* Updated stat icon colors to use pink instead of teal */
-        .stat-icon.users { background: rgba(233, 30, 99, 0.1); color: var(--pink-primary); }
-        .stat-icon.active { background: rgba(40, 167, 69, 0.1); color: #28a745; }
-        .stat-icon.pending { background: rgba(255, 193, 7, 0.1); color: #ffc107; }
-        .stat-icon.blocked { background: rgba(220, 53, 69, 0.1); color: #dc3545; }
-        
-        .stat-number {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #333;
-            margin-bottom: 0.5rem;
+        .stats-icon.pink { 
+            background: linear-gradient(135deg, var(--pink-primary) 0%, var(--pink-dark) 100%);
+            box-shadow: 0 8px 20px rgba(255, 105, 180, 0.3);
         }
-        
-        .stat-label {
-            color: #666;
-            font-size: 0.9rem;
+        .stats-icon.rose { 
+            background: linear-gradient(135deg, var(--rose) 0%, var(--pink-dark) 100%);
+            box-shadow: 0 8px 20px rgba(255, 20, 147, 0.3);
         }
-        
-        /* User Management Table */
-        .content-card {
+        .stats-icon.coral { 
+            background: linear-gradient(135deg, var(--coral) 0%, var(--rose) 100%);
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.3);
+        }
+        .stats-icon.light-pink { 
+            background: linear-gradient(135deg, var(--pink-light) 0%, var(--pink-primary) 100%);
+            box-shadow: 0 8px 20px rgba(255, 182, 193, 0.3);
+        }
+        .analytics-section {
             background: white;
-            border-radius: 12px;
-            padding: 1.5rem;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.15);
+            margin-top: 2rem;
         }
-        
-        .table-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .section-title {
+            color: var(--pink-dark);
+            font-weight: 700;
             margin-bottom: 1.5rem;
         }
-        
-        .table-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: #333;
-            margin: 0;
-        }
-        
-        .search-box {
-            position: relative;
-            max-width: 300px;
-        }
-        
-        .search-box input {
-            padding-left: 2.5rem;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-        }
-        
-        .search-box i {
-            position: absolute;
-            left: 0.75rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #666;
-        }
-        
-        .table {
-            margin-bottom: 0;
-        }
-        
-        .table th {
-            border-top: none;
-            border-bottom: 2px solid #f1f3f4;
-            font-weight: 600;
-            color: #333;
-            padding: 1rem 0.75rem;
-        }
-        
-        .table td {
-            border-top: 1px solid #f1f3f4;
-            padding: 1rem 0.75rem;
-            vertical-align: middle;
-        }
-        
-       .user-avatar {
-    width: 50px;       /* Size of the avatar */
-    height: 50px;
-    border-radius: 50%;
-    overflow: hidden;
-    flex-shrink: 0;    /* Prevent shrinking */
-    margin-right: 0.75rem;
-}
-
-.user-avatar img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Keeps image aspect ratio, fills container */
-    display: block;
-}
-
-        
-        .user-info {
-            display: flex;
-            align-items: center;
-        }
-        
-        .user-details h6 {
-            margin: 0;
-            font-weight: 600;
-            color: #333;
-        }
-        
-        .user-details small {
-            color: #666;
-        }
-        
         .status-badge {
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 500;
+            background: linear-gradient(135deg, var(--pink-primary) 0%, var(--pink-dark) 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-block;
         }
-        
-        .status-active { background: rgba(40, 167, 69, 0.1); color: #28a745; }
-        .status-pending { background: rgba(255, 193, 7, 0.1); color: #ffc107; }
-        .status-blocked { background: rgba(220, 53, 69, 0.1); color: #dc3545; }
-        
-        .action-buttons {
-            display: flex;
-            gap: 0.5rem;
-        }
-        
-        .btn-sm {
-            padding: 0.25rem 0.5rem;
-            font-size: 0.8rem;
-            border-radius: 6px;
-        }
-        
-        .btn-outline-primary {
-            /* Updated outline button colors to pink */
-            border-color: var(--pink-primary);
-            color: var(--pink-primary);
-        }
-        
-        .btn-outline-primary:hover {
-            /* Updated outline button hover colors to pink */
-            background: var(--pink-primary);
-            border-color: var(--pink-primary);
-        }
-        
-        /* Pagination Custom Styles */
-      /* Custom Pagination Styles */
-.pagination .page-link {
-    /* Updated pagination colors to pink */
-    color: var(--pink-primary) !important;
-    border: 1px solid var(--pink-primary) !important;
-    transition: all 0.3s ease;
-    background-color: #fff !important; /* keep white default */
-}
-
-.pagination .page-link:hover {
-    /* Updated pagination hover colors to pink */
-    background-color: var(--pink-primary) !important;
-    color: #fff !important;
-    border-color: var(--pink-dark) !important;
-}
-
-.pagination .page-item.active .page-link {
-  background-color: black
-  /* remove Bootstrap blue glow */
-}
-
-
-
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .sidebar {
-                transform: translateX(-100%);
-                transition: transform 0.3s ease;
-            }
-            
-            .sidebar.show {
-                transform: translateX(0);
-            }
-            
-            .main-content {
-                margin-left: 0;
-                padding: 1rem;
-            }
-            
-            .stats-row {
-                grid-template-columns: 1fr;
-            }
-            
-            .header {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            .header-actions {
-                margin-left: 0;
-            }
+        .last-login-info {
+            background: linear-gradient(135deg, var(--pink-light) 0%, var(--pink-primary) 100%);
+            color: white;
+            padding: 1rem;
+            border-radius: 15px;
+            text-align: center;
         }
     </style>
 </head>
 <body>
-  <div class="admin-container">
-     Sidebar 
-    <nav class="sidebar">
-      <div class="sidebar-header">
-        <div class="logo">
-          <div class="logo-icon"><i class="bi bi-grid-3x3-gap-fill"></i></div>
-          Diprella Admin
+     Navigation 
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <div class="navbar-brand">
+                <div class="logo-icon"></div>
+                Diprella Dashboard
+            </div>
+            <button type="button" class="btn btn-logout text-white d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#logoutModal">
+                <i class="bi bi-box-arrow-right me-2"></i>Logout
+            </button>
         </div>
-      </div>
-      <div class="sidebar-nav">
-        <div class="nav-item"><a href="#" class="nav-link"><i class="bi bi-speedometer2"></i> Dashboard</a></div>
-        <div class="nav-item"><a href="#" class="nav-link active"><i class="bi bi-people"></i> User Management</a></div>
-        <div class="nav-item"><a href="#" class="nav-link"><i class="bi bi-bar-chart"></i> Analytics</a></div>
-        <div class="nav-item"><a href="#" class="nav-link"><i class="bi bi-gear"></i> Settings</a></div>
-        <div class="nav-item"><a href="#" class="nav-link"><i class="bi bi-shield-check"></i> Security</a></div>
-        <div class="nav-item"><a href="#" class="nav-link"><i class="bi bi-envelope"></i> Messages</a></div>
-        <div class="nav-item"><a href="<?=site_url('logout'); ?>" class="nav-link"><i class="bi bi-box-arrow-right"></i> Logout</a></div>
-      </div>
     </nav>
 
-     Main Content 
-    <main class="main-content">
-       Header 
-      <div class="header">
-        <h1 class="header-title">User Management</h1>
-        <div class="header-actions">
-          
-          <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addUserModal"><i class="bi bi-plus-circle me-2"></i>Add Admin</button>
-          <button class="btn btn-outline-secondary"><i class="bi bi-download me-2"></i>Export</button>
+     Logout Modal 
+    <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="logoutModalLabel">Confirm Logout</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to logout?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <a href="<?=site_url('logout'); ?>" class="btn btn-danger">Logout</a>
+                </div>
+            </div>
         </div>
-      </div>
+    </div>
 
-       User Management Table 
-      <div class="content-card">
-        <div class="table-header">
-          <h3 class="table-title">All Users</h3>
-         <form action="<?= site_url('admin/user-management'); ?>" method="get" class="search-box d-flex">
-            <?php
-            $q = '';
-            if(isset($_GET['q'])) {
-                $q = $_GET['q'];
-            }
-            ?>
-            <i class="bi bi-search align-self-center me-2"></i>
-            <input type="text" class="form-control" name="q" placeholder="Search users..." value="<?= html_escape($q); ?>">
-            <button type="submit" class="btn btn-primary ms-2">Search</button>
-        </form>
+    <div class="container my-5">
+         Welcome Section 
+        <div class="card welcome-card mb-4">
+            <div class="card-body p-4 position-relative">
+                <h1 class="h2 fw-bold mb-2">Welcome back, <?= ($user['first_name']) ?>!</h1>
+                <p class="fs-5 mb-0 opacity-90">Here's your profile information and account details.</p>
+            </div>
+        </div>
 
-        </div>
-    <?php getErrors(); ?>
-        <?php getMessage(); ?>
-        <div class="table-responsive">
-          <table class="table">
-            <thead>
-              <tr>
-                <th>User</th>
-                <th>Email</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Role</th>
-                <th>Joined</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody id="userTableBody">
-              <?php foreach($getAll as $user): ?>
-              <tr>
-                <td>
-                  <div class="user-info">
-                    <div class="user-avatar">
-    <img src="<?= base_url() . $user['profile_picture']; ?>" alt="Profile Picture">
-        </div>
-                    <div class="user-details">
-                      <h6><?= html_escape($user['username']); ?></h6>
-                      <small>ID: <?= html_escape($user['id']); ?></small>
+         Stats Cards 
+        <div class="row g-4 mb-4">
+            <div class="col-md-3">
+                <div class="card stats-card">
+                    <div class="card-body p-4 text-center">
+                        <div class="stats-icon pink mx-auto">
+                            <i class="bi bi-person-check"></i>
+                        </div>
+                        <h3 class="h4 fw-bold text-dark mb-1">Profile</h3>
+                        <div class="status-badge"><?= ($user['account_status'] ?? 'Active') ?></div>
                     </div>
-                  </div>
-                </td>
-                <td><?= html_escape($user['email']); ?></td>
-                <td><?= html_escape($user['first_name']); ?></td>
-                <td><?= html_escape($user['last_name']); ?></td>
-                <td><?= html_escape($user['role']); ?></td>
-                <td><?= html_escape($user['created_at']); ?></td>
-
-                <td>
-                  <div class="action-buttons">
-                    <button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editUserModal<?= $user['id']; ?>">Edit</button>
-                    <button class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#deleteUserModal<?= $user['id']; ?>">Delete</button>
-                  </div>
-                </td>
-              </tr>
-
-               add admin 
-              <div class="modal fade" id="addUserModal" tabindex="-1" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                    <form method="POST" action="<?= site_url('admin/createAdmin'); ?>" enctype="multipart/form-data">
-                      <div class="modal-header">
-                        <h5 class="modal-title">Add admin</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                      </div>
-                      <div class="modal-body">
-                        <div class="mb-3"><label class="form-label">First Name</label><input type="text" name="first_name" class="form-control"></div>
-                        <div class="mb-3"><label class="form-label">Last Name</label><input type="text" name="last_name" class="form-control"></div>
-                        <div class="mb-3"><label class="form-label">Username</label><input type="text" name="username" class="form-control"></div>
-                        <div class="mb-3"><label class="form-label">Email</label><input type="email" name="email" class="form-control"></div>
-                         <div class="mb-3"><label class="form-label">Password</label><input type="password" name="password" class="form-control"></div>
-                        <div class="mb-3"><label class="form-label">Confirm Password</label><input type="password" name="confirm_password" class="form-control"></div>
-                          <div class="form-group">
-                        <input type="file" class="form-control" required name="profile_picture" accept="image/*">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card stats-card">
+                    <div class="card-body p-4 text-center">
+                        <div class="stats-icon rose mx-auto">
+                            <i class="bi bi-wifi"></i>
+                        </div>
+                        <h3 class="h4 fw-bold text-dark mb-1">Status</h3>
+                        <p class="text-success fw-bold mb-0">Online</p>
                     </div>
-
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-primary">Add</button>
-                      </div>
-                    </form>
-                  </div>
                 </div>
-              </div>
-
-               <div class="modal fade" id="editUserModal<?= $user['id']; ?>" tabindex="-1" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-
-                    <form method="POST" action="<?= site_url('admin/update/'.$user['id']); ?>">
-                      <div class="modal-header">
-                        <h5 class="modal-title">Edit User</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                      </div>
-                      <div class="modal-body">
-                        <div class="mb-3"><label class="form-label">First Name</label><input type="text" name="first_name" class="form-control" value="<?= html_escape($user['first_name']); ?>"></div>
-                        <div class="mb-3"><label class="form-label">Last Name</label><input type="text" name="last_name" class="form-control" value="<?= html_escape($user['last_name']); ?>"></div>
-                        <div class="mb-3"><label class="form-label">Username</label><input type="text" name="username" class="form-control" value="<?= html_escape($user['username']); ?>"></div>
-                        <div class="mb-3"><label class="form-label">Email</label><input type="email" name="email" class="form-control" value="<?= html_escape($user['email']); ?>"></div>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-primary">Save</button>
-                      </div>
-                    </form>
-                  </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card stats-card">
+                    <div class="card-body p-4 text-center">
+                        <div class="stats-icon coral mx-auto">
+                            <i class="bi bi-clock-history"></i>
+                        </div>
+                        <h3 class="h4 fw-bold text-dark mb-1">Last Login</h3>
+                        <p class="text-muted mb-0">Just Now</p>
+                    </div>
                 </div>
-              </div>
-
-               Delete Modal 
-              <div class="modal fade" id="deleteUserModal<?= $user['id']; ?>" tabindex="-1" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                    <form method="POST" action="<?= site_url('admin/delete/'.$user['id']); ?>">
-                      <div class="modal-header bg-danger text-white">
-                        <h5 class="modal-title">Confirm Delete</h5>
-                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-                      </div>
-                      <div class="modal-body">Are you sure you want to delete <strong><?= html_escape($user['username']); ?></strong>?</div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                      </div>
-                    </form>
-                  </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card stats-card">
+                    <div class="card-body p-4 text-center">
+                        <div class="stats-icon light-pink mx-auto">
+                            <i class="bi bi-graph-up"></i>
+                        </div>
+                        <h3 class="h4 fw-bold text-dark mb-1">Activity</h3>
+                        <p class="text-success fw-bold mb-0">High</p>
+                    </div>
                 </div>
-              </div>
-
-              <?php endforeach; ?>
-            </tbody>
-          </table>
+            </div>
         </div>
 
-            Pagination 
-        <div class="mt-3">
-            <?php
-              
-                echo $page;
-            ?>
+         Profile Card 
+        <div class="card profile-card">
+            <div class="card-body p-4">
+                 Profile Header 
+                <div class="d-flex align-items-center mb-4">
+                    <div class="profile-picture me-3">
+                        <?php if(!empty($user['profile_picture']) && file_exists($user['profile_picture'])): ?>
+                            <img src="<?= base_url() . $user['profile_picture']; ?>" alt="Profile Picture">
+                        <?php else: ?>
+                            <?= strtoupper(substr($user['first_name'],0,1)) ?>
+                        <?php endif; ?>
+                    </div>
+                    <div>
+                        <h2 class="h4 fw-bold text-dark mb-1"><?= ($user['first_name'].' '.$user['last_name']) ?></h2>
+                        <p class="text-muted mb-0">@<?= ($user['username']) ?></p>
+                    </div>
+                </div>
+
+                 Profile Details Grid 
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="card detail-card">
+                            <div class="card-body p-3">
+                                <div class="detail-label mb-1">First Name</div>
+                                <div class="detail-value"><?= ($user['first_name']) ?></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card detail-card">
+                            <div class="card-body p-3">
+                                <div class="detail-label mb-1">Username</div>
+                                <div class="detail-value"><?= ($user['username']) ?></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card detail-card">
+                            <div class="card-body p-3">
+                                <div class="detail-label mb-1">Email Address</div>
+                                <div class="detail-value"><?= ($user['email']) ?></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card detail-card">
+                            <div class="card-body p-3">
+                                <div class="detail-label mb-1">Member Since</div>
+                                <div class="detail-value"><?= date('F d, Y', strtotime($user['created_at'])) ?></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </main>
-  </div>
 
-      <script src="<?= BASE_URL; ?>/public/js/alert.js"></script>
+         Analytics Section 
+        <div class="card analytics-section">
+            <div class="card-body p-4">
+                <h3 class="section-title">Analytics Overview</h3>
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="text-center">
+                            <div class="stats-icon pink mx-auto mb-3">
+                                <i class="bi bi-calendar-check"></i>
+                            </div>
+                            <h4 class="h5 fw-bold text-dark"><?= date('F Y', strtotime($user['created_at'])) ?></h4>
+                            <p class="text-muted">Member Since</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="text-center">
+                            <div class="stats-icon rose mx-auto mb-3">
+                                <i class="bi bi-star-fill"></i>
+                            </div>
+                            <h4 class="h5 fw-bold text-dark"><?= ($user['account_type'] ?? 'Standard') ?></h4>
+                            <p class="text-muted">Account Type</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="last-login-info">
+                            <i class="bi bi-clock fs-3 mb-2 d-block"></i>
+                            <h5 class="fw-bold mb-1">Last Login Record</h5>
+                            <p class="mb-0 opacity-90"><?= date('M d, Y - g:i A') ?></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <script src="<?= BASE_URL; ?>/public/js/alert.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
