@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,10 +41,11 @@
         
         /* Header */
         .dashboard-header {
-            /* Changed from centered to left-aligned layout */
+            /* Updated to group dashboard title and logout on left side */
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-start;
             align-items: center;
+            gap: 2rem;
             text-align: left;
             margin-bottom: 3rem;
             background: var(--card-white);
@@ -66,23 +66,27 @@
         }
         
         .logout-btn {
-            /* Updated to pink theme */
-            background: var(--primary-pink);
+            /* Updated logout button with new styling */
+            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-pink));
             color: white;
             border: none;
-            padding: 0.75rem 2rem;
-            border-radius: 25px;
+            padding: 0.6rem 1.5rem;
+            border-radius: 15px;
             font-weight: 600;
+            font-size: 0.9rem;
             text-decoration: none;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3);
+            box-shadow: 0 3px 12px rgba(236, 72, 153, 0.25);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
         
         .logout-btn:hover {
-            background: var(--secondary-pink);
+            background: linear-gradient(135deg, var(--secondary-pink), var(--primary-pink));
             color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(236, 72, 153, 0.4);
+            transform: translateY(-1px);
+            box-shadow: 0 5px 18px rgba(236, 72, 153, 0.35);
         }
         
         /* Redesigned welcome card with horizontal layout */
@@ -432,20 +436,13 @@
             
             .dashboard-header {
                 padding: 1.5rem;
-                /* Stack header elements vertically on mobile but keep left alignment */
-                flex-direction: column;
-                align-items: flex-start;
+                /* Keep elements together on mobile but allow wrapping */
+                flex-wrap: wrap;
                 gap: 1rem;
             }
             
             .dashboard-title {
                 font-size: 2rem;
-            }
-            
-            .welcome-card {
-                grid-template-columns: 1fr;
-                text-align: left;
-                gap: 1.5rem;
             }
         }
     </style>
@@ -454,10 +451,11 @@
     <div class="dashboard-container">
         <!-- Header -->
         <div class="dashboard-header">
-            <!-- Moved title and logout to left-right layout -->
+            <!-- Combined dashboard title and logout button on left side -->
             <h1 class="dashboard-title">Dashboard</h1>
             <button type="button" class="logout-btn" data-bs-toggle="modal" data-bs-target="#logoutConfirmModal">
-                <i class="bi bi-box-arrow-right me-2"></i>Logout
+                <i class="bi bi-box-arrow-right"></i>
+                Logout
             </button>
         </div>
 
