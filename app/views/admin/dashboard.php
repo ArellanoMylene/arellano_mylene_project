@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
+    <title>Admin Dashboard </title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
     <style>
@@ -71,6 +71,37 @@
             color: var(--pink-primary);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
+
+        /* Added admin profile section in sidebar */
+        .admin-profile {
+            padding: 1.5rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .admin-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .admin-name {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: white;
+        }
+
+        .admin-role {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
         
         .sidebar-nav {
             padding: 1.5rem 0;
@@ -111,6 +142,87 @@
             flex: 1;
             padding: 2.5rem;
             background: transparent;
+        }
+
+        /* Added welcome section styling */
+        .welcome-section {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(233, 30, 99, 0.1);
+        }
+
+        .welcome-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--pink-primary), var(--pink-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .welcome-subtitle {
+            color: #7f8c8d;
+            font-size: 1rem;
+            margin: 0;
+        }
+
+        /* Added stats cards styling */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, var(--pink-primary), var(--pink-accent));
+            border-radius: 16px;
+            padding: 2rem;
+            color: white;
+            box-shadow: 0 8px 32px rgba(233, 30, 99, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(233, 30, 99, 0.4);
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transform: translate(30px, -30px);
+        }
+
+        .stat-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            font-weight: 500;
+            opacity: 0.9;
         }
         
         .header {
@@ -165,6 +277,7 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
             border: 1px solid rgba(233, 30, 99, 0.1);
         }
+
         
         .table-header {
             display: flex;
@@ -431,6 +544,11 @@
             .search-box {
                 max-width: 100%;
             }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
         }
     </style>
 </head>
@@ -441,22 +559,56 @@
       <div class="sidebar-header">
         <div class="logo">
           <div class="logo-icon"><i class="bi bi-grid-3x3-gap-fill"></i></div>
-           Admin
+          Admin
         </div>
       </div>
+      
+       <!-- Added admin profile section -->
+      <div class="admin-profile">
+        <div class="admin-avatar">
+          <i class="bi bi-person-fill"></i>
+        </div>
+        <div class="admin-name">Admin name</div>
+        <div class="admin-role">Administrator</div>
+      </div>
+      
       <div class="sidebar-nav">
-        <div class="nav-item"><a href="#" class="nav-link"><i class="bi bi-speedometer2"></i> Dashboard</a></div>
-        <div class="nav-item"><a href="#" class="nav-link active"><i class="bi bi-people"></i> User Management</a></div>
-        <div class="nav-item"><a href="#" class="nav-link"><i class="bi bi-bar-chart"></i> Analytics</a></div>
-        <div class="nav-item"><a href="#" class="nav-link"><i class="bi bi-gear"></i> Settings</a></div>
-        <div class="nav-item"><a href="#" class="nav-link"><i class="bi bi-shield-check"></i> Security</a></div>
-        <div class="nav-item"><a href="#" class="nav-link"><i class="bi bi-envelope"></i> Messages</a></div>
+        <div class="nav-item"><a href="#" class="nav-link"><i class="bi bi-house"></i> Home</a></div>
+        <div class="nav-item"><a href="#" class="nav-link"><i class="bi bi-box"></i> Products</a></div>
+        <div class="nav-item"><a href="#" class="nav-link active"><i class="bi bi-people"></i> Users</a></div>
+        <div class="nav-item"><a href="#" class="nav-link"><i class="bi bi-bag"></i> Orders</a></div>
+        <div class="nav-item"><a href="#" class="nav-link"><i class="bi bi-person-circle"></i> Account</a></div>
         <div class="nav-item"><a href="<?=site_url('logout'); ?>" class="nav-link"><i class="bi bi-box-arrow-right"></i> Logout</a></div>
       </div>
     </nav>
 
      Main Content 
     <main class="main-content">
+       <!-- Added welcome section -->
+      <div class="welcome-section">
+        <h1 class="welcome-title">Welcome back, Admin 👋</h1>
+        <p class="welcome-subtitle">Time to manage your users</p>
+      </div>
+
+       <!-- Added stats cards section -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon"><i class="bi bi-box"></i></div>
+          <div class="stat-number"><?= count($getAll); ?></div>
+          <div class="stat-label">Users</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon"><i class="bi bi-people"></i></div>
+          <div class="stat-number">5</div>
+          <div class="stat-label">Active</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon"><i class="bi bi-bag"></i></div>
+          <div class="stat-number">12</div>
+          <div class="stat-label">Total</div>
+        </div>
+      </div>
+
        Header 
       <div class="header">
         <h1 class="header-title">User Management</h1>
