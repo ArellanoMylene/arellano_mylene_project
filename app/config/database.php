@@ -69,7 +69,7 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
     // // Optional for SQLite
     // 'path'      => ''
 
-    
+    $database['main'] = array(
     'driver'	=> 'mysql',
     'hostname'	=> 'sql12.freesqldatabase.com',
     'port'		=> '3306',
