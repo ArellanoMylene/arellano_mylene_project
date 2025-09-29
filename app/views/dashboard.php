@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Diprella</title>
+    <title>Dashboard - User</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
     <style>
@@ -211,12 +211,12 @@
     </style>
 </head>
 <body>
-     Navigation 
+     
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <div class="navbar-brand">
                 <div class="logo-icon"></div>
-                Diprella Dashboard
+               
             </div>
             <button type="button" class="btn btn-logout text-white d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#logoutModal">
                 <i class="bi bi-box-arrow-right me-2"></i>Logout
@@ -224,7 +224,7 @@
         </div>
     </nav>
 
-     Logout Modal 
+  
     <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -244,7 +244,7 @@
     </div>
 
     <div class="container my-5">
-         Welcome Section 
+         
         <div class="card welcome-card mb-4">
             <div class="card-body p-4 position-relative">
                 <h1 class="h2 fw-bold mb-2">Welcome back, <?= ($user['first_name']) ?>!</h1>
@@ -252,7 +252,7 @@
             </div>
         </div>
 
-         Stats Cards 
+         
         <div class="row g-4 mb-4">
             <div class="col-md-3">
                 <div class="card stats-card">
@@ -300,10 +300,10 @@
             </div>
         </div>
 
-         Profile Card 
+         
         <div class="card profile-card">
             <div class="card-body p-4">
-                 Profile Header 
+                
                 <div class="d-flex align-items-center mb-4">
                     <div class="profile-picture me-3">
                         <?php if(!empty($user['profile_picture']) && file_exists($user['profile_picture'])): ?>
@@ -318,7 +318,7 @@
                     </div>
                 </div>
 
-                 Profile Details Grid 
+                
                 <div class="row g-3">
                     <div class="col-md-6">
                         <div class="card detail-card">
@@ -356,7 +356,7 @@
             </div>
         </div>
 
-         Analytics Section 
+         
         <div class="card analytics-section">
             <div class="card-body p-4">
                 <h3 class="section-title">Analytics Overview</h3>
