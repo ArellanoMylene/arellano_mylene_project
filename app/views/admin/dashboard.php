@@ -36,7 +36,7 @@
         .dashboard-container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 2.5rem;
+            padding: 3rem 2.5rem;
         }
         
         /* Header */
@@ -92,16 +92,30 @@
         /* Redesigned welcome card with horizontal layout */
         .welcome-card {
             background: linear-gradient(135deg, var(--primary-pink), var(--secondary-pink));
-            border-radius: 24px;
-            padding: 2.5rem;
-            margin-bottom: 3rem;
-            box-shadow: 0 8px 32px rgba(236, 72, 153, 0.2);
+            border-radius: 28px;
+            padding: 3rem;
+            margin-bottom: 3.5rem;
+            box-shadow: 0 12px 40px rgba(236, 72, 153, 0.25);
             display: grid;
             grid-template-columns: auto 1fr auto;
             align-items: center;
-            gap: 2rem;
+            gap: 2.5rem;
             color: white;
             text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .welcome-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            backdrop-filter: blur(20px);
         }
         
         .profile-icon {
@@ -154,16 +168,34 @@
         
         .status-card {
             background: var(--card-white);
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
+            border-radius: 24px;
+            padding: 2.5rem;
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
             border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .status-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-pink));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .status-card:hover::before {
+            transform: scaleX(1);
         }
         
         .status-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 30px rgba(236, 72, 153, 0.15);
+            transform: translateY(-6px);
+            box-shadow: 0 12px 40px rgba(236, 72, 153, 0.2);
             border-color: var(--light-pink);
         }
         
@@ -207,10 +239,10 @@
         /* User Management Section */
         .user-management {
             background: var(--card-white);
-            border-radius: 24px;
-            padding: 2.5rem;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            border: 2px solid var(--light-pink);
+            border-radius: 28px;
+            padding: 3rem;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            border: 3px solid var(--light-pink);
         }
         
         .section-header {
@@ -426,6 +458,100 @@
             background-color: var(--primary-pink);
             border-color: var(--primary-pink);
             color: white;
+        }
+        
+        /* Enhanced logout confirmation modal */
+        .logout-modal .modal-content {
+            border-radius: 24px;
+            border: none;
+            box-shadow: 0 25px 80px rgba(236, 72, 153, 0.2);
+            overflow: hidden;
+        }
+        
+        .logout-modal .modal-header {
+            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-pink));
+            color: white;
+            border: none;
+            padding: 2.5rem 2rem 2rem 2rem;
+            text-align: center;
+        }
+        
+        .logout-modal .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+        
+        .logout-modal .modal-body {
+            padding: 2.5rem;
+            text-align: center;
+            background: white;
+        }
+        
+        .logout-modal .logout-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(236, 72, 153, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem auto;
+            font-size: 2rem;
+            color: var(--primary-pink);
+        }
+        
+        .logout-modal .logout-message {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            line-height: 1.6;
+            margin: 0;
+        }
+        
+        .logout-modal .modal-footer {
+            padding: 2rem 2.5rem 2.5rem 2.5rem;
+            border: none;
+            background: white;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .logout-modal .btn-cancel {
+            background: var(--border-light);
+            color: var(--text-gray);
+            border: none;
+            padding: 0.875rem 2rem;
+            border-radius: 15px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .logout-modal .btn-cancel:hover {
+            background: var(--light-pink);
+            color: var(--primary-pink);
+        }
+        
+        .logout-modal .btn-logout {
+            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-pink));
+            color: white;
+            border: none;
+            padding: 0.875rem 2rem;
+            border-radius: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3);
+        }
+        
+        .logout-modal .btn-logout:hover {
+            background: linear-gradient(135deg, var(--secondary-pink), var(--primary-pink));
+            color: white;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(236, 72, 153, 0.4);
         }
         
         /* Responsive */
@@ -698,21 +824,27 @@
     </div>
     <?php endforeach; ?>
 
-    <div class="modal fade" id="logoutConfirmModal" tabindex="-1" aria-labelledby="logoutConfirmModalLabel" aria-hidden="true">
+    <!-- Enhanced logout confirmation modal with attractive design -->
+    <div class="modal fade logout-modal" id="logoutConfirmModal" tabindex="-1" aria-labelledby="logoutConfirmModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="logoutConfirmModalLabel">
-                        <i class="bi bi-box-arrow-right me-2"></i>Confirm Logout
+                        <i class="bi bi-box-arrow-right me-2"></i>Logout Confirmation
                     </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p class="mb-0">Are you sure you want to logout? You will need to sign in again to access your dashboard.</p>
+                    <div class="logout-icon">
+                        <i class="bi bi-question-circle"></i>
+                    </div>
+                    <p class="logout-message">Are you sure you want to logout? You will need to sign in again to access your dashboard and all your personalized settings.</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <a href="<?=site_url('logout'); ?>" class="btn btn-primary">
+                    <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">
+                        <i class="bi bi-x-circle me-2"></i>Cancel
+                    </button>
+                    <a href="<?=site_url('logout'); ?>" class="btn btn-logout">
                         <i class="bi bi-box-arrow-right me-2"></i>Yes, Logout
                     </a>
                 </div>
