@@ -335,7 +335,7 @@
          Welcome Section 
         <div class="card welcome-card mb-4">
             <div class="card-body p-4 position-relative">
-                <h1 class="h2 fw-bold mb-2">Welcome back, <?= $user['first_name'] ?>!</h1>
+                <h1 class="h2 fw-bold mb-2">Welcome back, <?= htmlspecialchars($user['first_name'], ENT_QUOTES, 'UTF-8') ?>!</h1>
                 <p class="fs-5 mb-0 opacity-90">Here's your profile information and account details.</p>
             </div>
         </div>
