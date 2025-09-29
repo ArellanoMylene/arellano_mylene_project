@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard - Diprella</title>
+    <title>Admin Dashboard - Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
     <style>
         :root {
-            --teal-primary: #4ECDC4;
-            --teal-dark: #45B7B8;
+            /* Updated color scheme from teal to pink */
+            --pink-primary: #E91E63;
+            --pink-dark: #C2185B;
             --coral: #FF6B6B;
             --yellow: #FFE66D;
             --gray-light: #F8F9FA;
@@ -31,7 +32,8 @@
         /* Sidebar Styles */
         .sidebar {
             width: var(--sidebar-width);
-            background: linear-gradient(180deg, var(--teal-primary) 0%, var(--teal-dark) 100%);
+            /* Updated gradient to use pink colors */
+            background: linear-gradient(180deg, var(--pink-primary) 0%, var(--pink-dark) 100%);
             color: white;
             position: fixed;
             height: 100vh;
@@ -60,7 +62,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--teal-primary);
+            /* Updated icon color to pink */
+            color: var(--pink-primary);
         }
         
         .sidebar-nav {
@@ -125,7 +128,8 @@
         }
         
         .btn-primary {
-            background: var(--teal-primary);
+            /* Updated button colors to pink */
+            background: var(--pink-primary);
             border: none;
             border-radius: 8px;
             padding: 0.5rem 1rem;
@@ -133,7 +137,8 @@
         }
         
         .btn-primary:hover {
-            background: var(--teal-dark);
+            /* Updated hover color to dark pink */
+            background: var(--pink-dark);
             transform: translateY(-2px);
         }
         
@@ -168,7 +173,8 @@
             margin-bottom: 1rem;
         }
         
-        .stat-icon.users { background: rgba(78, 205, 196, 0.1); color: var(--teal-primary); }
+        /* Updated stat icon colors to use pink instead of teal */
+        .stat-icon.users { background: rgba(233, 30, 99, 0.1); color: var(--pink-primary); }
         .stat-icon.active { background: rgba(40, 167, 69, 0.1); color: #28a745; }
         .stat-icon.pending { background: rgba(255, 193, 7, 0.1); color: #ffc107; }
         .stat-icon.blocked { background: rgba(220, 53, 69, 0.1); color: #dc3545; }
@@ -244,21 +250,22 @@
             vertical-align: middle;
         }
         
-        .user-avatar {
-            width: 50px;       /* Size of the avatar */
-            height: 50px;
-            border-radius: 50%;
-            overflow: hidden;
-            flex-shrink: 0;    /* Prevent shrinking */
-            margin-right: 0.75rem;
-        }
-        
-        .user-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Keeps image aspect ratio, fills container */
-            display: block;
-        }
+       .user-avatar {
+    width: 50px;       /* Size of the avatar */
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;    /* Prevent shrinking */
+    margin-right: 0.75rem;
+}
+
+.user-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Keeps image aspect ratio, fills container */
+    display: block;
+}
+
         
         .user-info {
             display: flex;
@@ -298,36 +305,41 @@
         }
         
         .btn-outline-primary {
-            border-color: var(--teal-primary);
-            color: var(--teal-primary);
+            /* Updated outline button colors to pink */
+            border-color: var(--pink-primary);
+            color: var(--pink-primary);
         }
         
         .btn-outline-primary:hover {
-            background: var(--teal-primary);
-            border-color: var(--teal-primary);
+            /* Updated outline button hover colors to pink */
+            background: var(--pink-primary);
+            border-color: var(--pink-primary);
         }
         
-        /* Custom Pagination Styles */
-        .pagination .page-link {
-            color: var(--teal-primary) !important;
-            border: 1px solid var(--teal-primary) !important;
-            transition: all 0.3s ease;
-            background-color: #fff !important; /* keep white default */
-        }
-        
-        .pagination .page-link:hover {
-            background-color: var(--teal-primary) !important;
-            color: #fff !important;
-            border-color: var(--teal-dark) !important;
-        }
-        
-        .pagination .page-item.active .page-link {
-            background-color: var(--teal-primary) !important;
-            border-color: var(--teal-primary) !important;
-            color: #fff !important;
-            /* remove Bootstrap blue glow */
-        }
-        
+        /* Pagination Custom Styles */
+      /* Custom Pagination Styles */
+.pagination .page-link {
+    /* Updated pagination colors to pink */
+    color: var(--pink-primary) !important;
+    border: 1px solid var(--pink-primary) !important;
+    transition: all 0.3s ease;
+    background-color: #fff !important; /* keep white default */
+}
+
+.pagination .page-link:hover {
+    /* Updated pagination hover colors to pink */
+    background-color: var(--pink-primary) !important;
+    color: #fff !important;
+    border-color: var(--pink-dark) !important;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: black
+  /* remove Bootstrap blue glow */
+}
+
+
+
         /* Mobile Responsive */
         @media (max-width: 768px) {
             .sidebar {
@@ -361,7 +373,7 @@
 </head>
 <body>
   <div class="admin-container">
-    <!-- Sidebar -->
+     Sidebar 
     <nav class="sidebar">
       <div class="sidebar-header">
         <div class="logo">
@@ -380,9 +392,9 @@
       </div>
     </nav>
 
-    <!-- Main Content -->
+     Main Content 
     <main class="main-content">
-      <!-- Header -->
+       Header 
       <div class="header">
         <h1 class="header-title">User Management</h1>
         <div class="header-actions">
@@ -392,11 +404,11 @@
         </div>
       </div>
 
-      <!-- User Management Table -->
+       User Management Table 
       <div class="content-card">
         <div class="table-header">
           <h3 class="table-title">All Users</h3>
-          <form action="<?= site_url('admin/user-management'); ?>" method="get" class="search-box d-flex">
+         <form action="<?= site_url('admin/user-management'); ?>" method="get" class="search-box d-flex">
             <?php
             $q = '';
             if(isset($_GET['q'])) {
@@ -406,9 +418,10 @@
             <i class="bi bi-search align-self-center me-2"></i>
             <input type="text" class="form-control" name="q" placeholder="Search users..." value="<?= html_escape($q); ?>">
             <button type="submit" class="btn btn-primary ms-2">Search</button>
-          </form>
+        </form>
+
         </div>
-        <?php getErrors(); ?>
+    <?php getErrors(); ?>
         <?php getMessage(); ?>
         <div class="table-responsive">
           <table class="table">
@@ -429,8 +442,8 @@
                 <td>
                   <div class="user-info">
                     <div class="user-avatar">
-                      <img src="<?= base_url() . $user['profile_picture']; ?>" alt="Profile Picture">
-                    </div>
+    <img src="<?= base_url() . $user['profile_picture']; ?>" alt="Profile Picture">
+        </div>
                     <div class="user-details">
                       <h6><?= html_escape($user['username']); ?></h6>
                       <small>ID: <?= html_escape($user['id']); ?></small>
@@ -442,6 +455,7 @@
                 <td><?= html_escape($user['last_name']); ?></td>
                 <td><?= html_escape($user['role']); ?></td>
                 <td><?= html_escape($user['created_at']); ?></td>
+
                 <td>
                   <div class="action-buttons">
                     <button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editUserModal<?= $user['id']; ?>">Edit</button>
@@ -449,14 +463,89 @@
                   </div>
                 </td>
               </tr>
+
+               add admin 
+              <div class="modal fade" id="addUserModal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <form method="POST" action="<?= site_url('admin/createAdmin'); ?>" enctype="multipart/form-data">
+                      <div class="modal-header">
+                        <h5 class="modal-title">Add admin</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                      </div>
+                      <div class="modal-body">
+                        <div class="mb-3"><label class="form-label">First Name</label><input type="text" name="first_name" class="form-control"></div>
+                        <div class="mb-3"><label class="form-label">Last Name</label><input type="text" name="last_name" class="form-control"></div>
+                        <div class="mb-3"><label class="form-label">Username</label><input type="text" name="username" class="form-control"></div>
+                        <div class="mb-3"><label class="form-label">Email</label><input type="email" name="email" class="form-control"></div>
+                         <div class="mb-3"><label class="form-label">Password</label><input type="password" name="password" class="form-control"></div>
+                        <div class="mb-3"><label class="form-label">Confirm Password</label><input type="password" name="confirm_password" class="form-control"></div>
+                          <div class="form-group">
+                        <input type="file" class="form-control" required name="profile_picture" accept="image/*">
+                    </div>
+
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Add</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+
+               <div class="modal fade" id="editUserModal<?= $user['id']; ?>" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+
+                    <form method="POST" action="<?= site_url('admin/update/'.$user['id']); ?>">
+                      <div class="modal-header">
+                        <h5 class="modal-title">Edit User</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                      </div>
+                      <div class="modal-body">
+                        <div class="mb-3"><label class="form-label">First Name</label><input type="text" name="first_name" class="form-control" value="<?= html_escape($user['first_name']); ?>"></div>
+                        <div class="mb-3"><label class="form-label">Last Name</label><input type="text" name="last_name" class="form-control" value="<?= html_escape($user['last_name']); ?>"></div>
+                        <div class="mb-3"><label class="form-label">Username</label><input type="text" name="username" class="form-control" value="<?= html_escape($user['username']); ?>"></div>
+                        <div class="mb-3"><label class="form-label">Email</label><input type="email" name="email" class="form-control" value="<?= html_escape($user['email']); ?>"></div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+
+               Delete Modal 
+              <div class="modal fade" id="deleteUserModal<?= $user['id']; ?>" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <form method="POST" action="<?= site_url('admin/delete/'.$user['id']); ?>">
+                      <div class="modal-header bg-danger text-white">
+                        <h5 class="modal-title">Confirm Delete</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                      </div>
+                      <div class="modal-body">Are you sure you want to delete <strong><?= html_escape($user['username']); ?></strong>?</div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+
               <?php endforeach; ?>
             </tbody>
           </table>
         </div>
 
-        <!-- Pagination -->
+            Pagination 
         <div class="mt-3">
             <?php
+              
                 echo $page;
             ?>
         </div>
@@ -464,83 +553,8 @@
     </main>
   </div>
 
-  <!-- Add Admin Modal -->
-  <div class="modal fade" id="addUserModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <form method="POST" action="<?= site_url('admin/createAdmin'); ?>" enctype="multipart/form-data">
-          <div class="modal-header">
-            <h5 class="modal-title">Add admin</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-          </div>
-          <div class="modal-body">
-            <div class="mb-3"><label class="form-label">First Name</label><input type="text" name="first_name" class="form-control"></div>
-            <div class="mb-3"><label class="form-label">Last Name</label><input type="text" name="last_name" class="form-control"></div>
-            <div class="mb-3"><label class="form-label">Username</label><input type="text" name="username" class="form-control"></div>
-            <div class="mb-3"><label class="form-label">Email</label><input type="email" name="email" class="form-control"></div>
-            <div class="mb-3"><label class="form-label">Password</label><input type="password" name="password" class="form-control"></div>
-            <div class="mb-3"><label class="form-label">Confirm Password</label><input type="password" name="confirm_password" class="form-control"></div>
-            <div class="form-group">
-              <input type="file" class="form-control" required name="profile_picture" accept="image/*">
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-            <button type="submit" class="btn btn-primary">Add</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
+      <script src="<?= BASE_URL; ?>/public/js/alert.js"></script>
 
-  <!-- Edit User Modal -->
-  <?php foreach($getAll as $user): ?>
-  <div class="modal fade" id="editUserModal<?= $user['id']; ?>" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <form method="POST" action="<?= site_url('admin/update/'.$user['id']); ?>">
-          <div class="modal-header">
-            <h5 class="modal-title">Edit User</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-          </div>
-          <div class="modal-body">
-            <div class="mb-3"><label class="form-label">First Name</label><input type="text" name="first_name" class="form-control" value="<?= html_escape($user['first_name']); ?>"></div>
-            <div class="mb-3"><label class="form-label">Last Name</label><input type="text" name="last_name" class="form-control" value="<?= html_escape($user['last_name']); ?>"></div>
-            <div class="mb-3"><label class="form-label">Username</label><input type="text" name="username" class="form-control" value="<?= html_escape($user['username']); ?>"></div>
-            <div class="mb-3"><label class="form-label">Email</label><input type="email" name="email" class="form-control" value="<?= html_escape($user['email']); ?>"></div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-            <button type="submit" class="btn btn-primary">Save</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-  <?php endforeach; ?>
-
-  <!-- Delete Modal -->
-  <?php foreach($getAll as $user): ?>
-  <div class="modal fade" id="deleteUserModal<?= $user['id']; ?>" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <form method="POST" action="<?= site_url('admin/delete/'.$user['id']); ?>">
-          <div class="modal-header bg-danger text-white">
-            <h5 class="modal-title">Confirm Delete</h5>
-            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-          </div>
-          <div class="modal-body">Are you sure you want to delete <strong><?= html_escape($user['username']); ?></strong>?</div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-            <button type="submit" class="btn btn-danger">Delete</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-  <?php endforeach; ?>
-
-  <script src="<?= BASE_URL; ?>/public/js/alert.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
