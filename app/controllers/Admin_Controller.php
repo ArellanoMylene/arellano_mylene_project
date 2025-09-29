@@ -94,11 +94,11 @@ class Admin_Controller extends Controller {
                 ->max_length(20)
             ->name('password')
                 ->required()
-                ->min_length(😎
+                ->min_length(8)
                 ->max_length(100)
             ->name('confirm_password')
                 ->required()
-                ->min_length(😎
+                ->min_length(8)
                 ->max_length(100)
             ->name('email')
                 ->required()
