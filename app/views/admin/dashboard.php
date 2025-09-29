@@ -8,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
     <style>
         :root {
+            /* Updated color scheme to pink theme */
             --primary-pink: #EC4899;
             --secondary-pink: #F472B6;
             --light-pink: #FCE7F3;
@@ -17,53 +18,59 @@
             --text-gray: #6B7280;
             --border-light: #F3F4F6;
             --success-green: #10B981;
-            --warning-orange: #F59E0B;
+            --warning-yellow: #F59E0B;
             --danger-red: #EF4444;
             --accent-purple: #8B5CF6;
         }
         
         body {
-            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* Applied pink gradient background */
             background: var(--background-gradient);
             margin: 0;
             padding: 0;
             min-height: 100vh;
         }
         
+        /* Updated container layout to be more spacious */
         .dashboard-container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 1.5rem;
+            padding: 2.5rem;
         }
         
         /* Header */
         .dashboard-header {
-            background: var(--card-white);
-            border-radius: 20px;
-            padding: 1.5rem 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 4px 20px rgba(236, 72, 153, 0.1);
+            /* Changed to centered layout with pink accent */
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             align-items: center;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: var(--card-white);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(236, 72, 153, 0.1);
         }
         
         .dashboard-title {
-            font-size: 2.25rem;
+            font-size: 2.5rem;
             font-weight: 700;
+            color: var(--primary-pink);
+            margin: 0 0 1rem 0;
             background: linear-gradient(135deg, var(--primary-pink), var(--accent-purple));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin: 0;
         }
         
         .logout-btn {
-            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-pink));
+            /* Updated to pink theme */
+            background: var(--primary-pink);
             color: white;
             border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 12px;
+            padding: 0.75rem 2rem;
+            border-radius: 25px;
             font-weight: 600;
             text-decoration: none;
             transition: all 0.3s ease;
@@ -71,44 +78,29 @@
         }
         
         .logout-btn:hover {
+            background: var(--secondary-pink);
+            color: white;
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(236, 72, 153, 0.4);
-            color: white;
         }
         
-        /* Welcome Card */
+        /* Redesigned welcome card with horizontal layout */
         .welcome-card {
             background: linear-gradient(135deg, var(--primary-pink), var(--secondary-pink));
             border-radius: 24px;
             padding: 2.5rem;
-            margin-bottom: 2rem;
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .welcome-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-            pointer-events: none;
-        }
-        
-        .welcome-content {
-            display: flex;
+            margin-bottom: 3rem;
+            box-shadow: 0 8px 32px rgba(236, 72, 153, 0.2);
+            display: grid;
+            grid-template-columns: auto 1fr auto;
             align-items: center;
             gap: 2rem;
-            position: relative;
-            z-index: 1;
+            color: white;
         }
         
         .profile-icon {
-            width: 90px;
-            height: 90px;
+            width: 100px;
+            height: 100px;
             background: rgba(255, 255, 255, 0.2);
             border-radius: 50%;
             display: flex;
@@ -118,27 +110,40 @@
             font-size: 2.5rem;
             font-weight: 600;
             backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 255, 255, 0.3);
         }
         
         .welcome-text h2 {
             font-size: 2rem;
             font-weight: 700;
+            color: white;
             margin: 0 0 0.5rem 0;
         }
         
         .welcome-text p {
+            color: rgba(255, 255, 255, 0.9);
             margin: 0;
             font-size: 1.1rem;
-            opacity: 0.9;
         }
         
-        /* Status Cards */
+        /* Added decorative element to welcome card */
+        .welcome-decoration {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            backdrop-filter: blur(10px);
+        }
+        
+        /* Updated status cards layout to 2x2 grid */
         .status-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
         }
         
         .status-card {
@@ -147,51 +152,41 @@
             padding: 2rem;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
             transition: all 0.3s ease;
-            border: 1px solid rgba(236, 72, 153, 0.1);
+            border: 2px solid transparent;
         }
         
         .status-card:hover {
             transform: translateY(-4px);
             box-shadow: 0 8px 30px rgba(236, 72, 153, 0.15);
+            border-color: var(--light-pink);
         }
         
         .status-card-header {
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            gap: 1rem;
             margin-bottom: 1.5rem;
         }
         
         .status-icon {
             width: 50px;
             height: 50px;
-            border-radius: 16px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.5rem;
         }
         
-        .status-icon.users { 
-            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-pink));
-            color: white;
-        }
-        .status-icon.active { 
-            background: linear-gradient(135deg, var(--success-green), #34D399);
-            color: white;
-        }
-        .status-icon.pending { 
-            background: linear-gradient(135deg, var(--warning-orange), #FBBF24);
-            color: white;
-        }
-        .status-icon.activity { 
-            background: linear-gradient(135deg, var(--accent-purple), #A78BFA);
-            color: white;
-        }
+        /* Updated status icon colors to match pink theme */
+        .status-icon.users { background: rgba(236, 72, 153, 0.1); color: var(--primary-pink); }
+        .status-icon.active { background: rgba(16, 185, 129, 0.1); color: var(--success-green); }
+        .status-icon.pending { background: rgba(245, 158, 11, 0.1); color: var(--warning-yellow); }
+        .status-icon.activity { background: rgba(139, 92, 246, 0.1); color: var(--accent-purple); }
         
         .status-label {
             color: var(--text-gray);
-            font-size: 0.9rem;
+            font-size: 1rem;
             font-weight: 500;
             margin: 0;
         }
@@ -209,7 +204,7 @@
             border-radius: 24px;
             padding: 2.5rem;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            border: 1px solid rgba(236, 72, 153, 0.1);
+            border: 2px solid var(--light-pink);
         }
         
         .section-header {
@@ -224,7 +219,7 @@
         .section-title {
             font-size: 1.75rem;
             font-weight: 700;
-            color: var(--text-dark);
+            color: var(--primary-pink);
             margin: 0;
         }
         
@@ -237,38 +232,40 @@
         
         .search-form {
             display: flex;
-            gap: 0.75rem;
+            gap: 0.5rem;
             align-items: center;
         }
         
         .search-input {
             border: 2px solid var(--border-light);
             border-radius: 12px;
-            padding: 0.75rem 1rem;
+            padding: 0.75rem 1.25rem;
             min-width: 250px;
-            transition: all 0.3s ease;
+            transition: border-color 0.3s ease;
         }
         
         .search-input:focus {
             border-color: var(--primary-pink);
-            box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.1);
             outline: none;
+            box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.1);
         }
         
         .btn-primary {
-            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-pink));
+            /* Updated all primary buttons to pink theme */
+            background: var(--primary-pink);
             border: none;
             border-radius: 12px;
             padding: 0.75rem 1.5rem;
             color: white;
             font-weight: 600;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3);
+            box-shadow: 0 2px 10px rgba(236, 72, 153, 0.2);
         }
         
         .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(236, 72, 153, 0.4);
+            background: var(--secondary-pink);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3);
         }
         
         .btn-outline-secondary {
@@ -288,26 +285,17 @@
         }
         
         /* Table Styles */
-        .table-responsive {
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        }
-        
         .table {
             margin-bottom: 0;
         }
         
         .table th {
             border-top: none;
-            border-bottom: 2px solid var(--border-light);
+            border-bottom: 2px solid var(--light-pink);
             font-weight: 700;
-            color: var(--text-dark);
+            color: var(--primary-pink);
             padding: 1.25rem 1rem;
-            background: linear-gradient(135deg, var(--light-pink), #FDF2F8);
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            background: var(--light-pink);
         }
         
         .table td {
@@ -316,13 +304,9 @@
             vertical-align: middle;
         }
         
-        .table tbody tr:hover {
-            background-color: rgba(252, 231, 243, 0.3);
-        }
-        
         .user-avatar {
-            width: 55px;
-            height: 55px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             overflow: hidden;
             flex-shrink: 0;
@@ -344,24 +328,22 @@
         
         .user-details h6 {
             margin: 0;
-            font-weight: 600;
+            font-weight: 700;
             color: var(--text-dark);
-            font-size: 1rem;
         }
         
         .user-details small {
             color: var(--text-gray);
-            font-weight: 500;
         }
         
         .action-buttons {
             display: flex;
-            gap: 0.5rem;
+            gap: 0.75rem;
         }
         
         .btn-sm {
             padding: 0.5rem 1rem;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             border-radius: 8px;
             font-weight: 600;
         }
@@ -386,15 +368,14 @@
         }
         
         .modal-header {
-            border-bottom: 1px solid var(--border-light);
+            border-bottom: 2px solid var(--light-pink);
             padding: 2rem;
-            background: linear-gradient(135deg, var(--light-pink), #FDF2F8);
+            background: var(--light-pink);
         }
         
         .modal-title {
             font-weight: 700;
-            color: var(--text-dark);
-            font-size: 1.25rem;
+            color: var(--primary-pink);
         }
         
         .modal-body {
@@ -404,14 +385,14 @@
         .form-label {
             font-weight: 600;
             color: var(--text-dark);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
         }
         
         .form-control {
             border: 2px solid var(--border-light);
             border-radius: 12px;
             padding: 0.75rem 1rem;
-            transition: all 0.3s ease;
+            transition: border-color 0.3s ease;
         }
         
         .form-control:focus {
@@ -423,58 +404,51 @@
         .pagination .page-link {
             color: var(--primary-pink);
             border: 2px solid var(--border-light);
-            border-radius: 12px;
-            margin: 0 4px;
+            border-radius: 10px;
+            margin: 0 3px;
             padding: 0.75rem 1rem;
             font-weight: 600;
         }
         
         .pagination .page-link:hover {
-            background: var(--primary-pink);
+            background-color: var(--primary-pink);
             color: white;
             border-color: var(--primary-pink);
         }
         
         .pagination .page-item.active .page-link {
-            background: var(--primary-pink);
+            background-color: var(--primary-pink);
             border-color: var(--primary-pink);
             color: white;
         }
         
-        /* Responsive Design */
-        @media (max-width: 1024px) {
+        /* Responsive */
+        @media (max-width: 768px) {
             .dashboard-container {
-                padding: 1rem;
+                padding: 1.5rem;
             }
             
-            .status-cards {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            }
-        }
-        
-        @media (max-width: 768px) {
             .dashboard-header {
-                flex-direction: column;
-                gap: 1.5rem;
-                text-align: center;
+                padding: 1.5rem;
             }
             
             .dashboard-title {
-                font-size: 1.75rem;
+                font-size: 2rem;
             }
             
-            .welcome-content {
-                flex-direction: column;
+            .welcome-card {
+                grid-template-columns: 1fr;
                 text-align: center;
                 gap: 1.5rem;
             }
             
-            .welcome-text h2 {
-                font-size: 1.5rem;
+            .welcome-decoration {
+                display: none;
             }
             
             .status-cards {
                 grid-template-columns: 1fr;
+                gap: 1.5rem;
             }
             
             .section-header {
@@ -484,7 +458,6 @@
             
             .section-actions {
                 flex-direction: column;
-                align-items: stretch;
             }
             
             .search-form {
@@ -493,55 +466,6 @@
             
             .search-input {
                 min-width: auto;
-            }
-            
-            .user-management {
-                padding: 1.5rem;
-            }
-            
-            .table th,
-            .table td {
-                padding: 1rem 0.5rem;
-                font-size: 0.9rem;
-            }
-            
-            .action-buttons {
-                flex-direction: column;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .dashboard-container {
-                padding: 0.75rem;
-            }
-            
-            .dashboard-header,
-            .user-management {
-                padding: 1rem;
-            }
-            
-            .welcome-card {
-                padding: 1.5rem;
-            }
-            
-            .status-card {
-                padding: 1.5rem;
-            }
-            
-            .profile-icon {
-                width: 70px;
-                height: 70px;
-                font-size: 2rem;
-            }
-            
-            .status-icon {
-                width: 40px;
-                height: 40px;
-                font-size: 1.25rem;
-            }
-            
-            .status-value {
-                font-size: 1.5rem;
             }
         }
     </style>
@@ -558,14 +482,16 @@
 
         <!-- Welcome Card -->
         <div class="welcome-card">
-            <div class="welcome-content">
-                <div class="profile-icon">
-                    <i class="bi bi-person-fill"></i>
-                </div>
-                <div class="welcome-text">
-                    <h2>Welcome to Your Dashboard!</h2>
-                    <p>You have successfully logged in. Here's your personalized dashboard with enhanced pink styling.</p>
-                </div>
+            <div class="profile-icon">
+                <i class="bi bi-person-fill"></i>
+            </div>
+            <div class="welcome-text">
+                <h2>Welcome to Your Dashboard!</h2>
+                <p>You have successfully logged in. Here's your personalized dashboard.</p>
+            </div>
+            <!-- Added decorative element -->
+            <div class="welcome-decoration">
+                <i class="bi bi-stars"></i>
             </div>
         </div>
 
@@ -615,4 +541,208 @@
         <!-- User Management Section -->
         <div class="user-management">
             <div class="section-header">
-                <h3 class="section-title">Use
+                <h3 class="section-title">User Information</h3>
+                <div class="section-actions">
+                    <form action="<?= site_url('admin/user-management'); ?>" method="get" class="search-form">
+                        <?php
+                        $q = '';
+                        if(isset($_GET['q'])) {
+                            $q = $_GET['q'];
+                        }
+                        ?>
+                        <input type="text" class="form-control search-input" name="q" placeholder="Search users..." value="<?= html_escape($q); ?>">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </form>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addUserModal">
+                        <i class="bi bi-plus-circle me-2"></i>Add Admin
+                    </button>
+                    <button class="btn btn-outline-secondary">
+                        <i class="bi bi-download me-2"></i>Export
+                    </button>
+                </div>
+            </div>
+
+            <?php getErrors(); ?>
+            <?php getMessage(); ?>
+
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>User</th>
+                            <th>Email</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Role</th>
+                            <th>Joined</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="userTableBody">
+                        <?php foreach($getAll as $user): ?>
+                        <tr>
+                            <td>
+                                <div class="user-info">
+                                    <div class="user-avatar">
+                                        <img src="<?= base_url() . $user['profile_picture']; ?>" alt="Profile Picture">
+                                    </div>
+                                    <div class="user-details">
+                                        <h6><?= html_escape($user['username']); ?></h6>
+                                        <small>ID: <?= html_escape($user['id']); ?></small>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><?= html_escape($user['email']); ?></td>
+                            <td><?= html_escape($user['first_name']); ?></td>
+                            <td><?= html_escape($user['last_name']); ?></td>
+                            <td><?= html_escape($user['role']); ?></td>
+                            <td><?= html_escape($user['created_at']); ?></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editUserModal<?= $user['id']; ?>">Edit</button>
+                                    <button class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#deleteUserModal<?= $user['id']; ?>">Delete</button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <div class="modal fade" id="addUserModal" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <form method="POST" action="<?= site_url('admin/createAdmin'); ?>" enctype="multipart/form-data">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Add Admin</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="mb-3">
+                                                <label class="form-label">First Name</label>
+                                                <input type="text" name="first_name" class="form-control">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Last Name</label>
+                                                <input type="text" name="last_name" class="form-control">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Username</label>
+                                                <input type="text" name="username" class="form-control">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Email</label>
+                                                <input type="email" name="email" class="form-control">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Password</label>
+                                                <input type="password" name="password" class="form-control">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Confirm Password</label>
+                                                <input type="password" name="confirm_password" class="form-control">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Profile Picture</label>
+                                                <input type="file" class="form-control" required name="profile_picture" accept="image/*">
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                            <button type="submit" class="btn btn-primary">Save</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal fade" id="editUserModal<?= $user['id']; ?>" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <form method="POST" action="<?= site_url('admin/update/'.$user['id']); ?>">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Edit User</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="mb-3">
+                                                <label class="form-label">First Name</label>
+                                                <input type="text" name="first_name" class="form-control" value="<?= html_escape($user['first_name']); ?>">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Last Name</label>
+                                                <input type="text" name="last_name" class="form-control" value="<?= html_escape($user['last_name']); ?>">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Username</label>
+                                                <input type="text" name="username" class="form-control" value="<?= html_escape($user['username']); ?>">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Email</label>
+                                                <input type="email" name="email" class="form-control" value="<?= html_escape($user['email']); ?>">
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                            <button type="submit" class="btn btn-primary">Save</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div class="modal fade" id="deleteUserModal<?= $user['id']; ?>" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <form method="POST" action="<?= site_url('admin/delete/'.$user['id']); ?>">
+                                        <div class="modal-header bg-danger text-white">
+                                            <h5 class="modal-title">Confirm Delete</h5>
+                                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Are you sure you want to delete <strong><?= html_escape($user['username']); ?></strong>?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+
+            
+            <div class="mt-3">
+                <?php echo $page; ?>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="modal fade" id="logoutConfirmModal" tabindex="-1" aria-labelledby="logoutConfirmModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="logoutConfirmModalLabel">
+                        <i class="bi bi-box-arrow-right me-2"></i>Confirm Logout
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="mb-0">Are you sure you want to logout? You will need to sign in again to access your dashboard.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <a href="<?=site_url('logout'); ?>" class="btn btn-primary">
+                        <i class="bi bi-box-arrow-right me-2"></i>Yes, Logout
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="<?= BASE_URL; ?>/public/js/alert.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
