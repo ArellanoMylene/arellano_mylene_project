@@ -3,483 +3,616 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Admin</title>
+    <title>Dashboard - User Management</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
     <style>
         :root {
-            --pink-primary: #FF69B4;
-            --pink-dark: #E91E63;
-            --pink-light: #FFB6C1;
-            --rose: #FF1493;
-            --coral: #FF6B6B;
-            --gray-light: #FDF2F8;
-            --white: #FFFFFF;
+            --primary-pink: #EC4899;
+            --secondary-pink: #F472B6;
+            --light-pink: #FCE7F3;
+            --background-gradient: linear-gradient(135deg, #FDF2F8 0%, #FCE7F3 100%);
+            --card-white: #FFFFFF;
+            --text-dark: #1F2937;
+            --text-gray: #6B7280;
+            --border-light: #F3F4F6;
+            --success-green: #10B981;
+            --warning-orange: #F59E0B;
+            --danger-red: #EF4444;
+            --accent-purple: #8B5CF6;
         }
+        
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: var(--gray-light);
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--background-gradient);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
         }
-        .navbar {
-            background: white !important;
-            box-shadow: 0 2px 10px rgba(255, 105, 180, 0.2);
-            padding: 1rem 0;
+        
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.5rem;
         }
-        .navbar-brand {
+        
+        /* Header */
+        .dashboard-header {
+            background: var(--card-white);
+            border-radius: 20px;
+            padding: 1.5rem 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 20px rgba(236, 72, 153, 0.1);
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            font-weight: 600;
-            color: var(--pink-dark) !important;
         }
-        .logo-icon {
-            width: 24px;
-            height: 24px;
-            background: linear-gradient(135deg, var(--pink-primary) 0%, var(--pink-dark) 100%);
-            border-radius: 4px;
-            margin-right: 0.5rem;
+        
+        .dashboard-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-pink), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 0;
         }
-        .btn-logout {
-            background: linear-gradient(135deg, var(--rose) 0%, var(--pink-dark) 100%);
-            border: none;
-            border-radius: 25px;
-            padding: 0.5rem 1.5rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 20, 147, 0.3);
-        }
-        .btn-logout:hover {
-            background: linear-gradient(135deg, var(--pink-dark) 0%, var(--rose) 100%);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 20, 147, 0.4);
-        }
-        .welcome-card {
-            background: linear-gradient(135deg, var(--pink-primary) 0%, var(--pink-dark) 100%);
+        
+        .logout-btn {
+            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-pink));
             color: white;
             border: none;
-            border-radius: 20px;
-            overflow: hidden;
-            position: relative;
-            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3);
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3);
         }
+        
+        .logout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(236, 72, 153, 0.4);
+            color: white;
+        }
+        
+        /* Welcome Card */
+        .welcome-card {
+            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-pink));
+            border-radius: 24px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
         .welcome-card::before {
             content: '';
             position: absolute;
-            width: 120px;
-            height: 120px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            top: -30px;
-            right: -30px;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            pointer-events: none;
         }
-        .welcome-card::after {
-            content: '';
-            position: absolute;
-            width: 80px;
-            height: 80px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 50%;
-            bottom: -20px;
-            left: -20px;
+        
+        .welcome-content {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            position: relative;
+            z-index: 1;
         }
-        .profile-card {
-            border: none;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(255, 105, 180, 0.15);
-            background: white;
-        }
-        .profile-picture {
-            width: 80px;
-            height: 80px;
+        
+        .profile-icon {
+            width: 90px;
+            height: 90px;
+            background: rgba(255, 255, 255, 0.2);
             border-radius: 50%;
-            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, var(--pink-primary) 0%, var(--pink-dark) 100%);
-            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.3);
             color: white;
-            font-size: 2rem;
-            font-weight: bold;
+            font-size: 2.5rem;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
         }
-        .profile-picture img {
+        
+        .welcome-text h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0 0 0.5rem 0;
+        }
+        
+        .welcome-text p {
+            margin: 0;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        /* Status Cards */
+        .status-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .status-card {
+            background: var(--card-white);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(236, 72, 153, 0.1);
+        }
+        
+        .status-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(236, 72, 153, 0.15);
+        }
+        
+        .status-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+        }
+        
+        .status-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+        
+        .status-icon.users { 
+            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-pink));
+            color: white;
+        }
+        .status-icon.active { 
+            background: linear-gradient(135deg, var(--success-green), #34D399);
+            color: white;
+        }
+        .status-icon.pending { 
+            background: linear-gradient(135deg, var(--warning-orange), #FBBF24);
+            color: white;
+        }
+        .status-icon.activity { 
+            background: linear-gradient(135deg, var(--accent-purple), #A78BFA);
+            color: white;
+        }
+        
+        .status-label {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin: 0;
+        }
+        
+        .status-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin: 0;
+        }
+        
+        /* User Management Section */
+        .user-management {
+            background: var(--card-white);
+            border-radius: 24px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(236, 72, 153, 0.1);
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+        
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin: 0;
+        }
+        
+        .section-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .search-form {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+        }
+        
+        .search-input {
+            border: 2px solid var(--border-light);
+            border-radius: 12px;
+            padding: 0.75rem 1rem;
+            min-width: 250px;
+            transition: all 0.3s ease;
+        }
+        
+        .search-input:focus {
+            border-color: var(--primary-pink);
+            box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.1);
+            outline: none;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-pink));
+            border: none;
+            border-radius: 12px;
+            padding: 0.75rem 1.5rem;
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(236, 72, 153, 0.4);
+        }
+        
+        .btn-outline-secondary {
+            border: 2px solid var(--border-light);
+            color: var(--text-gray);
+            background: white;
+            border-radius: 12px;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-outline-secondary:hover {
+            background: var(--light-pink);
+            border-color: var(--primary-pink);
+            color: var(--primary-pink);
+        }
+        
+        /* Table Styles */
+        .table-responsive {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .table {
+            margin-bottom: 0;
+        }
+        
+        .table th {
+            border-top: none;
+            border-bottom: 2px solid var(--border-light);
+            font-weight: 700;
+            color: var(--text-dark);
+            padding: 1.25rem 1rem;
+            background: linear-gradient(135deg, var(--light-pink), #FDF2F8);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .table td {
+            border-top: 1px solid var(--border-light);
+            padding: 1.25rem 1rem;
+            vertical-align: middle;
+        }
+        
+        .table tbody tr:hover {
+            background-color: rgba(252, 231, 243, 0.3);
+        }
+        
+        .user-avatar {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+            margin-right: 1rem;
+            border: 3px solid var(--light-pink);
+        }
+        
+        .user-avatar img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             display: block;
         }
-        .detail-card {
-            border: none;
-            border-radius: 15px;
-            background: white;
-            border-left: 4px solid var(--pink-primary);
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.1);
-        }
-        .detail-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(255, 105, 180, 0.2);
-            border-left-color: var(--rose);
-        }
-        .detail-label {
-            color: var(--pink-dark);
-            font-weight: 600;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        .detail-value {
-            color: #333;
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-        .stats-card {
-            background: white;
-            border: none;
-            border-radius: 20px;
-            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.12);
-            transition: all 0.3s ease;
-            overflow: hidden;
-            position: relative;
-        }
-        .stats-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--pink-primary) 0%, var(--rose) 100%);
-        }
-        .stats-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 40px rgba(255, 105, 180, 0.25);
-        }
-        .stats-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 15px;
+        
+        .user-info {
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            color: white;
-            margin-bottom: 1rem;
         }
-        .stats-icon.pink { 
-            background: linear-gradient(135deg, var(--pink-primary) 0%, var(--pink-dark) 100%);
-            box-shadow: 0 8px 20px rgba(255, 105, 180, 0.3);
-        }
-        .stats-icon.rose { 
-            background: linear-gradient(135deg, var(--rose) 0%, var(--pink-dark) 100%);
-            box-shadow: 0 8px 20px rgba(255, 20, 147, 0.3);
-        }
-        .stats-icon.coral { 
-            background: linear-gradient(135deg, var(--coral) 0%, var(--rose) 100%);
-            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.3);
-        }
-        .stats-icon.light-pink { 
-            background: linear-gradient(135deg, var(--pink-light) 0%, var(--pink-primary) 100%);
-            box-shadow: 0 8px 20px rgba(255, 182, 193, 0.3);
-        }
-        .analytics-section {
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.15);
-            margin-top: 2rem;
-        }
-        .section-title {
-            color: var(--pink-dark);
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-        }
-        .status-badge {
-            background: linear-gradient(135deg, var(--pink-primary) 0%, var(--pink-dark) 100%);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
+        
+        .user-details h6 {
+            margin: 0;
             font-weight: 600;
-            font-size: 0.9rem;
-            display: inline-block;
+            color: var(--text-dark);
+            font-size: 1rem;
         }
-        .last-login-info {
-            background: linear-gradient(135deg, var(--pink-light) 0%, var(--pink-primary) 100%);
+        
+        .user-details small {
+            color: var(--text-gray);
+            font-weight: 500;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .btn-sm {
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+        
+        .btn-outline-primary {
+            border-color: var(--primary-pink);
+            color: var(--primary-pink);
+            background: white;
+        }
+        
+        .btn-outline-primary:hover {
+            background: var(--primary-pink);
+            border-color: var(--primary-pink);
             color: white;
-            padding: 1rem;
-            border-radius: 15px;
-            text-align: center;
         }
-        /* Enhanced Responsive Design */
-        @media (max-width: 768px) {
-            .container {
-                padding: 0 1rem;
+        
+        /* Modal Styles */
+        .modal-content {
+            border-radius: 20px;
+            border: none;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+        
+        .modal-header {
+            border-bottom: 1px solid var(--border-light);
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--light-pink), #FDF2F8);
+        }
+        
+        .modal-title {
+            font-weight: 700;
+            color: var(--text-dark);
+            font-size: 1.25rem;
+        }
+        
+        .modal-body {
+            padding: 2rem;
+        }
+        
+        .form-label {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-control {
+            border: 2px solid var(--border-light);
+            border-radius: 12px;
+            padding: 0.75rem 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-pink);
+            box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.1);
+        }
+        
+        /* Pagination */
+        .pagination .page-link {
+            color: var(--primary-pink);
+            border: 2px solid var(--border-light);
+            border-radius: 12px;
+            margin: 0 4px;
+            padding: 0.75rem 1rem;
+            font-weight: 600;
+        }
+        
+        .pagination .page-link:hover {
+            background: var(--primary-pink);
+            color: white;
+            border-color: var(--primary-pink);
+        }
+        
+        .pagination .page-item.active .page-link {
+            background: var(--primary-pink);
+            border-color: var(--primary-pink);
+            color: white;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .dashboard-container {
+                padding: 1rem;
             }
             
-            .navbar {
-                padding: 0.5rem 0;
-            }
-            
-            .navbar-brand {
-                font-size: 1.1rem;
-            }
-            
-            .btn-logout {
-                padding: 0.4rem 1rem;
-                font-size: 0.9rem;
-            }
-            
-            .welcome-card .card-body {
-                padding: 2rem 1.5rem;
-            }
-            
-            .welcome-card h1 {
-                font-size: 1.5rem;
-            }
-            
-            .welcome-card p {
-                font-size: 1rem;
-            }
-            
-            .stats-card .card-body {
-                padding: 2rem 1rem;
-            }
-            
-            .stats-icon {
-                width: 50px;
-                height: 50px;
-                font-size: 1.5rem;
-            }
-            
-            .profile-card .card-body {
-                padding: 2rem 1.5rem;
-            }
-            
-            .profile-picture {
-                width: 60px;
-                height: 60px;
-                font-size: 1.5rem;
-            }
-            
-            .analytics-section .card-body {
-                padding: 2rem 1.5rem;
-            }
-            
-            .section-title {
-                font-size: 1.3rem;
+            .status-cards {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             }
         }
         
-        @media (max-width: 576px) {
-            .row.g-4 {
-                --bs-gutter-x: 1rem;
-                --bs-gutter-y: 1rem;
-            }
-            
-            .col-md-3 {
-                margin-bottom: 1rem;
-            }
-            
-            .d-flex.align-items-center {
+        @media (max-width: 768px) {
+            .dashboard-header {
                 flex-direction: column;
+                gap: 1.5rem;
                 text-align: center;
             }
             
-            .profile-picture {
-                margin-bottom: 1rem;
-                margin-right: 0 !important;
+            .dashboard-title {
+                font-size: 1.75rem;
             }
             
-            .detail-card .card-body {
-                padding: 1.5rem 1rem;
+            .welcome-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 1.5rem;
             }
             
-            .analytics-section .row.g-4 {
-                --bs-gutter-y: 2rem;
+            .welcome-text h2 {
+                font-size: 1.5rem;
+            }
+            
+            .status-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .section-actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .search-form {
+                flex-direction: column;
+            }
+            
+            .search-input {
+                min-width: auto;
+            }
+            
+            .user-management {
+                padding: 1.5rem;
+            }
+            
+            .table th,
+            .table td {
+                padding: 1rem 0.5rem;
+                font-size: 0.9rem;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .dashboard-container {
+                padding: 0.75rem;
+            }
+            
+            .dashboard-header,
+            .user-management {
+                padding: 1rem;
+            }
+            
+            .welcome-card {
+                padding: 1.5rem;
+            }
+            
+            .status-card {
+                padding: 1.5rem;
+            }
+            
+            .profile-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 2rem;
+            }
+            
+            .status-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1.25rem;
+            }
+            
+            .status-value {
+                font-size: 1.5rem;
             }
         }
     </style>
 </head>
 <body>
-     Navigation 
-    <nav class="navbar navbar-expand-lg">
-        <div class="container">
-            <div class="navbar-brand">
-                <div class="logo-icon"></div>
-                Diprella Dashboard
-            </div>
-            <button type="button" class="btn btn-logout text-white d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#logoutModal">
+    <div class="dashboard-container">
+        <!-- Header -->
+        <div class="dashboard-header">
+            <h1 class="dashboard-title">Dashboard</h1>
+            <button type="button" class="logout-btn" data-bs-toggle="modal" data-bs-target="#logoutConfirmModal">
                 <i class="bi bi-box-arrow-right me-2"></i>Logout
             </button>
         </div>
-    </nav>
 
-     Logout Modal 
-    <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="logoutModalLabel">Confirm Logout</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <!-- Welcome Card -->
+        <div class="welcome-card">
+            <div class="welcome-content">
+                <div class="profile-icon">
+                    <i class="bi bi-person-fill"></i>
                 </div>
-                <div class="modal-body">
-                    Are you sure you want to logout?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <a href="<?=site_url('logout'); ?>" class="btn btn-danger">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="container my-5">
-         Welcome Section 
-        <div class="card welcome-card mb-4">
-            <div class="card-body p-4 position-relative">
-                <h1 class="h2 fw-bold mb-2">Welcome back, <?= htmlspecialchars($user['first_name'], ENT_QUOTES, 'UTF-8') ?>!</h1>
-                <p class="fs-5 mb-0 opacity-90">Here's your profile information and account details.</p>
-            </div>
-        </div>
-
-         Stats Cards 
-        <div class="row g-4 mb-4">
-            <div class="col-md-3">
-                <div class="card stats-card">
-                    <div class="card-body p-4 text-center">
-                        <div class="stats-icon pink mx-auto">
-                            <i class="bi bi-person-check"></i>
-                        </div>
-                        <h3 class="h4 fw-bold text-dark mb-1">Profile</h3>
-                        <div class="status-badge"><?= $user['account_status'] ?? 'Active' ?></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card stats-card">
-                    <div class="card-body p-4 text-center">
-                        <div class="stats-icon rose mx-auto">
-                            <i class="bi bi-wifi"></i>
-                        </div>
-                        <h3 class="h4 fw-bold text-dark mb-1">Status</h3>
-                        <p class="text-success fw-bold mb-0">Online</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card stats-card">
-                    <div class="card-body p-4 text-center">
-                        <div class="stats-icon coral mx-auto">
-                            <i class="bi bi-clock-history"></i>
-                        </div>
-                        <h3 class="h4 fw-bold text-dark mb-1">Last Login</h3>
-                        <p class="text-muted mb-0">Just Now</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card stats-card">
-                    <div class="card-body p-4 text-center">
-                        <div class="stats-icon light-pink mx-auto">
-                            <i class="bi bi-graph-up"></i>
-                        </div>
-                        <h3 class="h4 fw-bold text-dark mb-1">Activity</h3>
-                        <p class="text-success fw-bold mb-0">High</p>
-                    </div>
+                <div class="welcome-text">
+                    <h2>Welcome to Your Dashboard!</h2>
+                    <p>You have successfully logged in. Here's your personalized dashboard with enhanced pink styling.</p>
                 </div>
             </div>
         </div>
 
-         Profile Card 
-        <div class="card profile-card">
-            <div class="card-body p-4">
-                 Profile Header 
-                <div class="d-flex align-items-center mb-4">
-                    <div class="profile-picture me-3">
-                        <?php if(!empty($user['profile_picture']) && file_exists($user['profile_picture'])): ?>
-                            <img src="<?= base_url() . $user['profile_picture']; ?>" alt="Profile Picture">
-                        <?php else: ?>
-                            <?= strtoupper(substr($user['first_name'],0,1)) ?>
-                        <?php endif; ?>
+        <!-- Status Cards -->
+        <div class="status-cards">
+            <div class="status-card">
+                <div class="status-card-header">
+                    <div class="status-icon users">
+                        <i class="bi bi-people"></i>
                     </div>
-                    <div>
-                        <h2 class="h4 fw-bold text-dark mb-1"><?= $user['first_name'].' '.$user['last_name'] ?></h2>
-                        <p class="text-muted mb-0">@<?= $user['username'] ?></p>
-                    </div>
+                    <p class="status-label">Total Users</p>
                 </div>
-
-                 Profile Details Grid 
-                <div class="row g-3">
-                    <div class="col-md-6">
-                        <div class="card detail-card">
-                            <div class="card-body p-3">
-                                <div class="detail-label mb-1">First Name</div>
-                                <div class="detail-value"><?= $user['first_name'] ?></div>
-                            </div>
-                        </div>
+                <h3 class="status-value"><?= count($getAll); ?></h3>
+            </div>
+            
+            <div class="status-card">
+                <div class="status-card-header">
+                    <div class="status-icon active">
+                        <i class="bi bi-check-circle"></i>
                     </div>
-                    <div class="col-md-6">
-                        <div class="card detail-card">
-                            <div class="card-body p-3">
-                                <div class="detail-label mb-1">Username</div>
-                                <div class="detail-value"><?= $user['username'] ?></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card detail-card">
-                            <div class="card-body p-3">
-                                <div class="detail-label mb-1">Email Address</div>
-                                <div class="detail-value"><?= $user['email'] ?></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card detail-card">
-                            <div class="card-body p-3">
-                                <div class="detail-label mb-1">Member Since</div>
-                                <div class="detail-value"><?= date('F d, Y', strtotime($user['created_at'])) ?></div>
-                            </div>
-                        </div>
-                    </div>
+                    <p class="status-label">Status</p>
                 </div>
+                <h3 class="status-value">Online</h3>
+            </div>
+            
+            <div class="status-card">
+                <div class="status-card-header">
+                    <div class="status-icon pending">
+                        <i class="bi bi-clock"></i>
+                    </div>
+                    <p class="status-label">Last Login</p>
+                </div>
+                <h3 class="status-value">Now</h3>
+            </div>
+            
+            <div class="status-card">
+                <div class="status-card-header">
+                    <div class="status-icon activity">
+                        <i class="bi bi-lightning"></i>
+                    </div>
+                    <p class="status-label">Activity</p>
+                </div>
+                <h3 class="status-value">High</h3>
             </div>
         </div>
 
-         Analytics Section 
-        <div class="card analytics-section">
-            <div class="card-body p-4">
-                <h3 class="section-title">Analytics Overview</h3>
-                <div class="row g-4">
-                    <div class="col-md-4">
-                        <div class="text-center">
-                            <div class="stats-icon pink mx-auto mb-3">
-                                <i class="bi bi-calendar-check"></i>
-                            </div>
-                            <h4 class="h5 fw-bold text-dark"><?= date('F Y', strtotime($user['created_at'])) ?></h4>
-                            <p class="text-muted">Member Since</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="text-center">
-                            <div class="stats-icon rose mx-auto mb-3">
-                                <i class="bi bi-star-fill"></i>
-                            </div>
-                            <h4 class="h5 fw-bold text-dark"><?= $user['account_type'] ?? 'Standard' ?></h4>
-                            <p class="text-muted">Account Type</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="last-login-info">
-                            <i class="bi bi-clock fs-3 mb-2 d-block"></i>
-                            <h5 class="fw-bold mb-1">Last Login Record</h5>
-                            <p class="mb-0 opacity-90"><?= date('M d, Y - g:i A') ?></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script src="<?= BASE_URL; ?>/public/js/alert.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+        <!-- User Management Section -->
+        <div class="user-management">
+            <div class="section-header">
+                <h3 class="section-title">Use
