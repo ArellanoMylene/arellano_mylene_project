@@ -641,7 +641,6 @@
             <!-- Welcome text now left-aligned -->
             <div class="welcome-text">
                 <h2>Welcome to Your Dashboard!</h2>
-                <p>You have successfully logged in. Here's your personalized dashboard.</p>
             </div>
             <div class="welcome-decoration">
                 <i class="bi bi-stars"></i>
