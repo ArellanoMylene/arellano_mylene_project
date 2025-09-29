@@ -208,6 +208,94 @@
             border-radius: 15px;
             text-align: center;
         }
+        /* Enhanced Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .navbar {
+                padding: 0.5rem 0;
+            }
+            
+            .navbar-brand {
+                font-size: 1.1rem;
+            }
+            
+            .btn-logout {
+                padding: 0.4rem 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .welcome-card .card-body {
+                padding: 2rem 1.5rem;
+            }
+            
+            .welcome-card h1 {
+                font-size: 1.5rem;
+            }
+            
+            .welcome-card p {
+                font-size: 1rem;
+            }
+            
+            .stats-card .card-body {
+                padding: 2rem 1rem;
+            }
+            
+            .stats-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+            
+            .profile-card .card-body {
+                padding: 2rem 1.5rem;
+            }
+            
+            .profile-picture {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+            
+            .analytics-section .card-body {
+                padding: 2rem 1.5rem;
+            }
+            
+            .section-title {
+                font-size: 1.3rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .row.g-4 {
+                --bs-gutter-x: 1rem;
+                --bs-gutter-y: 1rem;
+            }
+            
+            .col-md-3 {
+                margin-bottom: 1rem;
+            }
+            
+            .d-flex.align-items-center {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .profile-picture {
+                margin-bottom: 1rem;
+                margin-right: 0 !important;
+            }
+            
+            .detail-card .card-body {
+                padding: 1.5rem 1rem;
+            }
+            
+            .analytics-section .row.g-4 {
+                --bs-gutter-y: 2rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -247,7 +335,7 @@
          Welcome Section 
         <div class="card welcome-card mb-4">
             <div class="card-body p-4 position-relative">
-                <h1 class="h2 fw-bold mb-2">Welcome back, <?= ($user['first_name']) ?>!</h1>
+                <h1 class="h2 fw-bold mb-2">Welcome back, <?= $user['first_name'] ?>!</h1>
                 <p class="fs-5 mb-0 opacity-90">Here's your profile information and account details.</p>
             </div>
         </div>
@@ -261,7 +349,7 @@
                             <i class="bi bi-person-check"></i>
                         </div>
                         <h3 class="h4 fw-bold text-dark mb-1">Profile</h3>
-                        <div class="status-badge"><?= ($user['account_status'] ?? 'Active') ?></div>
+                        <div class="status-badge"><?= $user['account_status'] ?? 'Active' ?></div>
                     </div>
                 </div>
             </div>
@@ -313,8 +401,8 @@
                         <?php endif; ?>
                     </div>
                     <div>
-                        <h2 class="h4 fw-bold text-dark mb-1"><?= ($user['first_name'].' '.$user['last_name']) ?></h2>
-                        <p class="text-muted mb-0">@<?= ($user['username']) ?></p>
+                        <h2 class="h4 fw-bold text-dark mb-1"><?= $user['first_name'].' '.$user['last_name'] ?></h2>
+                        <p class="text-muted mb-0">@<?= $user['username'] ?></p>
                     </div>
                 </div>
 
@@ -324,7 +412,7 @@
                         <div class="card detail-card">
                             <div class="card-body p-3">
                                 <div class="detail-label mb-1">First Name</div>
-                                <div class="detail-value"><?= ($user['first_name']) ?></div>
+                                <div class="detail-value"><?= $user['first_name'] ?></div>
                             </div>
                         </div>
                     </div>
@@ -332,7 +420,7 @@
                         <div class="card detail-card">
                             <div class="card-body p-3">
                                 <div class="detail-label mb-1">Username</div>
-                                <div class="detail-value"><?= ($user['username']) ?></div>
+                                <div class="detail-value"><?= $user['username'] ?></div>
                             </div>
                         </div>
                     </div>
@@ -340,7 +428,7 @@
                         <div class="card detail-card">
                             <div class="card-body p-3">
                                 <div class="detail-label mb-1">Email Address</div>
-                                <div class="detail-value"><?= ($user['email']) ?></div>
+                                <div class="detail-value"><?= $user['email'] ?></div>
                             </div>
                         </div>
                     </div>
@@ -375,7 +463,7 @@
                             <div class="stats-icon rose mx-auto mb-3">
                                 <i class="bi bi-star-fill"></i>
                             </div>
-                            <h4 class="h5 fw-bold text-dark"><?= ($user['account_type'] ?? 'Standard') ?></h4>
+                            <h4 class="h5 fw-bold text-dark"><?= $user['account_type'] ?? 'Standard' ?></h4>
                             <p class="text-muted">Account Type</p>
                         </div>
                     </div>
