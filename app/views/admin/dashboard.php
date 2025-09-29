@@ -41,11 +41,10 @@
         
         /* Header */
         .dashboard-header {
-            /* Updated to group dashboard title and logout on left side */
+            /* Updated to justify-content: space-between to separate title and logout */
             display: flex;
-            justify-content: flex-start;
+            justify-content: space-between;
             align-items: center;
-            gap: 2rem;
             text-align: left;
             margin-bottom: 3rem;
             background: var(--card-white);
@@ -531,6 +530,77 @@
             transform: translateY(-1px);
         }
         
+        /* Simplified delete confirmation modal */
+        .delete-modal .modal-content {
+            border-radius: 20px;
+            border: none;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+        }
+        
+        .delete-modal .modal-header {
+            background: white;
+            color: var(--text-dark);
+            border-bottom: 1px solid var(--border-light);
+            padding: 1.5rem;
+        }
+        
+        .delete-modal .modal-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+        
+        .delete-modal .modal-body {
+            padding: 2rem 1.5rem;
+            text-align: center;
+            background: white;
+        }
+        
+        .delete-modal .delete-message {
+            font-size: 1rem;
+            color: var(--text-gray);
+            line-height: 1.5;
+            margin: 0;
+        }
+        
+        .delete-modal .modal-footer {
+            padding: 1rem 1.5rem 1.5rem 1.5rem;
+            border: none;
+            background: white;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .delete-modal .btn-cancel {
+            background: var(--border-light);
+            color: var(--text-gray);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 10px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .delete-modal .btn-cancel:hover {
+            background: var(--light-pink);
+            color: var(--primary-pink);
+        }
+        
+        .delete-modal .btn-delete {
+            background: var(--danger-red);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 10px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .delete-modal .btn-delete:hover {
+            background: #DC2626;
+            transform: translateY(-1px);
+        }
+        
         /* Responsive */
         @media (max-width: 768px) {
             .dashboard-container {
@@ -539,7 +609,7 @@
             
             .dashboard-header {
                 padding: 1.5rem;
-                /* Keep elements together on mobile but allow wrapping */
+                /* Allow wrapping on mobile but maintain space-between layout */
                 flex-wrap: wrap;
                 gap: 1rem;
             }
@@ -554,8 +624,9 @@
     <div class="dashboard-container">
         <!-- Header -->
         <div class="dashboard-header">
-            <!-- Combined dashboard title and logout button on left side -->
+            <!-- Dashboard title now standalone on left -->
             <h1 class="dashboard-title">Dashboard</h1>
+            <!-- Logout button moved to right side -->
             <button type="button" class="logout-btn" data-bs-toggle="modal" data-bs-target="#logoutConfirmModal">
                 <i class="bi bi-box-arrow-right"></i>
                 Logout
@@ -780,20 +851,20 @@
         </div>
     </div>
 
-    <div class="modal fade" id="deleteUserModal<?= $user['id']; ?>" tabindex="-1" aria-hidden="true">
+    <div class="modal fade delete-modal" id="deleteUserModal<?= $user['id']; ?>" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <form method="POST" action="<?= site_url('admin/delete/'.$user['id']); ?>">
-                    <div class="modal-header bg-danger text-white">
+                    <div class="modal-header">
                         <h5 class="modal-title">Confirm Delete</h5>
-                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
                     <div class="modal-body">
-                        Are you sure you want to delete <strong><?= html_escape($user['username']); ?></strong>?
+                        <p class="delete-message">Are you sure you want to delete <strong><?= html_escape($user['username']); ?></strong>?</p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-delete">Delete</button>
                     </div>
                 </form>
             </div>
