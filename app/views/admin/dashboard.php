@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,11 +42,11 @@
         
         /* Header */
         .dashboard-header {
-            /* Changed to centered layout with pink accent */
+            /* Changed from centered to left-aligned layout */
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
             align-items: center;
-            text-align: center;
+            text-align: left;
             margin-bottom: 3rem;
             background: var(--card-white);
             padding: 2rem;
@@ -57,7 +58,7 @@
             font-size: 2.5rem;
             font-weight: 700;
             color: var(--primary-pink);
-            margin: 0 0 1rem 0;
+            margin: 0;
             background: linear-gradient(135deg, var(--primary-pink), var(--accent-purple));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -96,6 +97,7 @@
             align-items: center;
             gap: 2rem;
             color: white;
+            text-align: left;
         }
         
         .profile-icon {
@@ -430,6 +432,10 @@
             
             .dashboard-header {
                 padding: 1.5rem;
+                /* Stack header elements vertically on mobile but keep left alignment */
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
             }
             
             .dashboard-title {
@@ -438,34 +444,8 @@
             
             .welcome-card {
                 grid-template-columns: 1fr;
-                text-align: center;
+                text-align: left;
                 gap: 1.5rem;
-            }
-            
-            .welcome-decoration {
-                display: none;
-            }
-            
-            .status-cards {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-            
-            .section-header {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            
-            .section-actions {
-                flex-direction: column;
-            }
-            
-            .search-form {
-                flex-direction: column;
-            }
-            
-            .search-input {
-                min-width: auto;
             }
         }
     </style>
@@ -474,6 +454,7 @@
     <div class="dashboard-container">
         <!-- Header -->
         <div class="dashboard-header">
+            <!-- Moved title and logout to left-right layout -->
             <h1 class="dashboard-title">Dashboard</h1>
             <button type="button" class="logout-btn" data-bs-toggle="modal" data-bs-target="#logoutConfirmModal">
                 <i class="bi bi-box-arrow-right me-2"></i>Logout
@@ -485,11 +466,11 @@
             <div class="profile-icon">
                 <i class="bi bi-person-fill"></i>
             </div>
+            <!-- Welcome text now left-aligned -->
             <div class="welcome-text">
                 <h2>Welcome to Your Dashboard!</h2>
                 <p>You have successfully logged in. Here's your personalized dashboard.</p>
             </div>
-            <!-- Added decorative element -->
             <div class="welcome-decoration">
                 <i class="bi bi-stars"></i>
             </div>
@@ -604,122 +585,121 @@
                                 </div>
                             </td>
                         </tr>
-
-                        <div class="modal fade" id="addUserModal" tabindex="-1" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
-                                    <form method="POST" action="<?= site_url('admin/createAdmin'); ?>" enctype="multipart/form-data">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title">Add Admin</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="mb-3">
-                                                <label class="form-label">First Name</label>
-                                                <input type="text" name="first_name" class="form-control">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">Last Name</label>
-                                                <input type="text" name="last_name" class="form-control">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">Username</label>
-                                                <input type="text" name="username" class="form-control">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">Email</label>
-                                                <input type="email" name="email" class="form-control">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">Password</label>
-                                                <input type="password" name="password" class="form-control">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">Confirm Password</label>
-                                                <input type="password" name="confirm_password" class="form-control">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">Profile Picture</label>
-                                                <input type="file" class="form-control" required name="profile_picture" accept="image/*">
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                            <button type="submit" class="btn btn-primary">Save</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="modal fade" id="editUserModal<?= $user['id']; ?>" tabindex="-1" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
-                                    <form method="POST" action="<?= site_url('admin/update/'.$user['id']); ?>">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title">Edit User</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="mb-3">
-                                                <label class="form-label">First Name</label>
-                                                <input type="text" name="first_name" class="form-control" value="<?= html_escape($user['first_name']); ?>">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">Last Name</label>
-                                                <input type="text" name="last_name" class="form-control" value="<?= html_escape($user['last_name']); ?>">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">Username</label>
-                                                <input type="text" name="username" class="form-control" value="<?= html_escape($user['username']); ?>">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">Email</label>
-                                                <input type="email" name="email" class="form-control" value="<?= html_escape($user['email']); ?>">
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                            <button type="submit" class="btn btn-primary">Save</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-
-                        
-                        <div class="modal fade" id="deleteUserModal<?= $user['id']; ?>" tabindex="-1" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
-                                    <form method="POST" action="<?= site_url('admin/delete/'.$user['id']); ?>">
-                                        <div class="modal-header bg-danger text-white">
-                                            <h5 class="modal-title">Confirm Delete</h5>
-                                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            Are you sure you want to delete <strong><?= html_escape($user['username']); ?></strong>?
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                            <button type="submit" class="btn btn-danger">Delete</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
                         <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
 
-            
             <div class="mt-3">
                 <?php echo $page; ?>
             </div>
         </div>
     </div>
 
-    
+    <div class="modal fade" id="addUserModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <form method="POST" action="<?= site_url('admin/createAdmin'); ?>" enctype="multipart/form-data">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Add Admin</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label">First Name</label>
+                            <input type="text" name="first_name" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Last Name</label>
+                            <input type="text" name="last_name" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Username</label>
+                            <input type="text" name="username" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" name="email" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Password</label>
+                            <input type="password" name="password" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Confirm Password</label>
+                            <input type="password" name="confirm_password" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Profile Picture</label>
+                            <input type="file" class="form-control" required name="profile_picture" accept="image/*">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <?php foreach($getAll as $user): ?>
+    <div class="modal fade" id="editUserModal<?= $user['id']; ?>" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <form method="POST" action="<?= site_url('admin/update/'.$user['id']); ?>">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Edit User</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label">First Name</label>
+                            <input type="text" name="first_name" class="form-control" value="<?= html_escape($user['first_name']); ?>">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Last Name</label>
+                            <input type="text" name="last_name" class="form-control" value="<?= html_escape($user['last_name']); ?>">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Username</label>
+                            <input type="text" name="username" class="form-control" value="<?= html_escape($user['username']); ?>">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" name="email" class="form-control" value="<?= html_escape($user['email']); ?>">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="deleteUserModal<?= $user['id']; ?>" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <form method="POST" action="<?= site_url('admin/delete/'.$user['id']); ?>">
+                    <div class="modal-header bg-danger text-white">
+                        <h5 class="modal-title">Confirm Delete</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to delete <strong><?= html_escape($user['username']); ?></strong>?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <?php endforeach; ?>
+
     <div class="modal fade" id="logoutConfirmModal" tabindex="-1" aria-labelledby="logoutConfirmModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
