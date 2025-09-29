@@ -70,16 +70,16 @@ $database['main'] = array(
     // 'path'      => ''
 
     
-    'driver'	=> 'mysql',
-    'hostname'	=> 'sql12.freesqldatabase.com',
-    'port'		=> '3306',
-    'username'	=> 'sql12800395',
-    'password'	=> 'C4jtkGbRUj',
-    'database'	=> 'sql12800395',
-    'charset'	=> 'utf8',
-    'dbprefix'	=> '',
-    // Optional for SQLite
-    'path'      => ''
-);
+$database['main'] = array(
+    'driver'    => 'mysql',
+    'hostname'  => getenv("DB_HOST"),
+    'port'      => getenv("DB_PORT"),
+    'username'  => getenv("DB_USER"),
+    'password'  => getenv("DB_PASS"),
+    'database'  => getenv("DB_NAME"),
+    'charset'   => 'utf8mb4',
+    'dbprefix'  => ''
+);  
+
 
 ?>
