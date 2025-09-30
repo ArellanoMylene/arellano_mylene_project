@@ -736,13 +736,7 @@
                             <td>
                                 <div class="user-info">
                                     <div class="user-avatar">
-                                        <?php if(!empty($user['profile_picture']) && file_exists($user['profile_picture'])): ?>
-                                            <img src="<?= base_url() . $user['profile_picture']; ?>" alt="Profile Picture">
-                                        <?php else: ?>
-                                            <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, var(--primary-pink), var(--secondary-pink)); color: white; font-size: 1.5rem; font-weight: 700;">
-                                                <?= strtoupper(substr($user['first_name'], 0, 1)) ?>
-                                            </div>
-                                        <?php endif; ?>
+                                        <img src="<?= base_url() . $user['profile_picture']; ?>" alt="Profile Picture">
                                     </div>
                                     <div class="user-details">
                                         <h6><?= html_escape($user['username']); ?></h6>
