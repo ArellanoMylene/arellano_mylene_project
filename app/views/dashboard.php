@@ -208,6 +208,17 @@
             border-radius: 15px;
             text-align: center;
         }
+        
+        /* Added styling for logout modal header with light pink background */
+        #logoutModal .modal-header {
+            background: var(--pink-light);
+            border-bottom: 1px solid rgba(233, 30, 99, 0.1);
+        }
+        
+        #logoutModal .modal-title {
+            color: var(--pink-dark);
+            font-weight: 600;
+        }
     </style>
 </head>
 <body>
