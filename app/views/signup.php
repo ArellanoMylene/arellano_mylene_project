@@ -1,9 +1,9 @@
-f<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" class="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up - Modern User Management</title>
+    <title>Sign Up Form</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -38,33 +38,36 @@ f<!DOCTYPE html>
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 2rem;
+            /* Made padding responsive for mobile */
+            padding: 1rem;
         }
 
+        /* Added responsive container styles */
         .auth-container {
             background-color: var(--bg-secondary);
             border: 2px solid var(--border);
             border-radius: var(--radius);
-            padding: 2rem;
+            padding: 1.5rem;
             width: 100%;
             max-width: 450px;
             box-shadow: 0 20px 40px var(--shadow);
         }
 
+        /* Responsive header sizing */
         .auth-header {
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
 
         .auth-header h1 {
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             font-weight: 600;
             margin-bottom: 0.5rem;
         }
 
         .auth-header p {
             color: var(--text-secondary);
-            font-size: 0.875rem;
+            font-size: 0.8rem;
         }
 
         .form-group {
@@ -100,9 +103,14 @@ f<!DOCTYPE html>
             color: var(--text-muted);
         }
 
+        /* Enhanced picture upload visibility and responsiveness */
         .picture-upload {
             text-align: center;
             margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: var(--bg-tertiary);
+            border-radius: var(--radius);
+            border: 2px dashed var(--border);
         }
 
         .picture-preview {
@@ -114,7 +122,7 @@ f<!DOCTYPE html>
             align-items: center;
             justify-content: center;
             margin: 0 auto 0.5rem;
-            background-color: var(--bg-tertiary);
+            background-color: var(--bg-secondary);
             cursor: pointer;
             transition: all 0.3s ease;
         }
@@ -122,6 +130,7 @@ f<!DOCTYPE html>
         .picture-preview:hover {
             border-color: var(--accent-secondary);
             background-color: rgba(236, 72, 153, 0.1);
+            transform: scale(1.05);
         }
 
         .picture-preview i {
@@ -143,6 +152,7 @@ f<!DOCTYPE html>
         .form-check-input {
             margin: 0;
             accent-color: var(--accent-primary);
+            flex-shrink: 0;
         }
 
         .form-check-label {
@@ -175,6 +185,7 @@ f<!DOCTYPE html>
             gap: 0.5rem;
             margin-bottom: 1.5rem;
             box-shadow: 0 4px 16px var(--shadow);
+            font-size: 0.875rem;
         }
 
         .btn-primary-modern:hover {
@@ -197,6 +208,112 @@ f<!DOCTYPE html>
 
         .auth-footer a:hover {
             text-decoration: underline;
+        }
+
+        /* Added tablet breakpoint (768px and up) */
+        @media (min-width: 768px) {
+            body {
+                padding: 2rem;
+            }
+
+            .auth-container {
+                padding: 2rem;
+            }
+
+            .auth-header {
+                margin-bottom: 2rem;
+            }
+
+            .auth-header h1 {
+                font-size: 1.5rem;
+            }
+
+            .auth-header p {
+                font-size: 0.875rem;
+            }
+
+            .picture-preview {
+                width: 100px;
+                height: 100px;
+            }
+
+            .picture-preview i {
+                font-size: 2rem;
+            }
+
+            .btn-primary-modern {
+                font-size: 1rem;
+                padding: 0.875rem;
+            }
+        }
+
+        /* Added laptop/desktop breakpoint (1024px and up) */
+        @media (min-width: 1024px) {
+            .auth-container {
+                padding: 2.5rem;
+                max-width: 500px;
+            }
+
+            .auth-header h1 {
+                font-size: 1.75rem;
+            }
+
+            .picture-preview {
+                width: 120px;
+                height: 120px;
+            }
+
+            .picture-preview i {
+                font-size: 2.5rem;
+            }
+
+            .form-control-modern {
+                padding: 0.875rem;
+                font-size: 0.9375rem;
+            }
+
+            .form-label {
+                font-size: 0.9375rem;
+            }
+        }
+
+        /* Added small phone optimization (max 375px) */
+        @media (max-width: 375px) {
+            body {
+                padding: 0.75rem;
+            }
+
+            .auth-container {
+                padding: 1.25rem;
+                border-radius: 12px;
+            }
+
+            .auth-header h1 {
+                font-size: 1.125rem;
+            }
+
+            .picture-preview {
+                width: 70px;
+                height: 70px;
+            }
+
+            .picture-preview i {
+                font-size: 1.25rem;
+            }
+
+            .form-control-modern {
+                padding: 0.625rem;
+                font-size: 0.8125rem;
+            }
+
+            .btn-primary-modern {
+                padding: 0.625rem;
+                font-size: 0.8125rem;
+            }
+
+            .form-check-label {
+                font-size: 0.8125rem;
+            }
         }
     </style>
 </head>
