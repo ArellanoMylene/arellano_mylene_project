@@ -465,7 +465,8 @@
         }
         
         .logout-modal .modal-header {
-            background: white;
+            /* Changed background from white to light pink */
+            background: var(--light-pink);
             color: var(--text-dark);
             border-bottom: 1px solid var(--border-light);
             padding: 1.5rem;
@@ -538,7 +539,8 @@
         }
         
         .delete-modal .modal-header {
-            background: white;
+            /* Changed background from white to light pink */
+            background: var(--light-pink);
             color: var(--text-dark);
             border-bottom: 1px solid var(--border-light);
             padding: 1.5rem;
@@ -736,7 +738,13 @@
                             <td>
                                 <div class="user-info">
                                     <div class="user-avatar">
-                                        <img src="<?= base_url() . $user['profile_picture']; ?>" alt="Profile Picture">
+                                        <?php if(!empty($user['profile_picture']) && file_exists($user['profile_picture'])): ?>
+                                            <img src="<?= base_url() . $user['profile_picture']; ?>" alt="Profile Picture">
+                                        <?php else: ?>
+                                            <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, var(--primary-pink), var(--secondary-pink)); color: white; font-size: 1.5rem; font-weight: 700;">
+                                                <?= strtoupper(substr($user['first_name'], 0, 1)) ?>
+                                            </div>
+                                        <?php endif; ?>
                                     </div>
                                     <div class="user-details">
                                         <h6><?= html_escape($user['username']); ?></h6>
