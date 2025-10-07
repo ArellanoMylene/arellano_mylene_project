@@ -15,6 +15,15 @@ class Admin_Controller extends Controller {
 
 
      public function read(){
+
+             if (!$this->session->userdata('logged_in')) {
+            return redirect('/'); 
+            }
+
+            // 🔒 Check if role is admin
+            if ($this->session->userdata('role') !== 'admin') {
+                return redirect(site_url('/'));
+            }
             $page = 1;
             if(isset($_GET['page']) && ! empty($_GET['page'])) {
                 $page = $this->io->get('page');
@@ -25,7 +34,7 @@ class Admin_Controller extends Controller {
                 $q = trim($this->io->get('q'));
             }
 
-            $records_per_page = 3;
+            $records_per_page = 5;
 
             // Get paginated data from model
             // $data['getAll'] = $this->User_Model->getAll(); 
@@ -47,6 +56,8 @@ class Admin_Controller extends Controller {
             $this->pagination->initialize($total_rows, $records_per_page, $page, 'admin/user-management?q='.$q );
             // site_url('admin').'?q='.$q ito yung error ko kanina, idk bakit 
             $data['page'] = $this->pagination->paginate();
+            $data['total_users'] = $this->UserModel->countAllUsers();
+
             $this->call->view('admin/dashboard', $data);
         }
 

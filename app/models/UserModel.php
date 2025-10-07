@@ -37,6 +37,10 @@ class UserModel extends Model {
                         ->get();
     }
 
+        public function countAllUsers() {
+        $result = $this->db->table($this->table)->select_count('id', 'user_count')->get();
+            return $result['user_count'] ?? 0;    
+            }
    
 
     public function getAll($q, $records_per_page = null, $page = null){

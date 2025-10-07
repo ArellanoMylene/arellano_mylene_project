@@ -16,7 +16,15 @@ class User_Controller extends Controller {
 
 
     public function registerForm(){
-        $this->call->view('signup');
+           if ($this->session->userdata('logged_in')) {
+        if ($this->session->userdata('role') === 'admin') {
+            redirect('/admin/user-management');
+        } else {
+                redirect('/home'); // 
+            }
+        } else {    
+            $this->call->view('signup');
+        }
     }
 
 
@@ -116,7 +124,8 @@ class User_Controller extends Controller {
                     'username'   => $username,
                     'email'      => $email,
                     'password'   => password_hash($password, PASSWORD_DEFAULT),
-                    'profile_picture' => $profilePic
+                    'profile_picture' => $profilePic,
+                    'role' => "user",
                 ]);
 
                 setMessage('success', 'Account created successfully!');
@@ -124,9 +133,15 @@ class User_Controller extends Controller {
             }
 
               public function userHomepage(){
-        if(!$this->session->has_userdata('logged_in')){
-                redirect('/');
-            }
+        if (!$this->session->userdata('logged_in')) {
+                    return redirect('/');
+                }
+
+                // Check if role is admin
+                if ($this->session->userdata('role') === 'admin') {
+                    return redirect(site_url('admin/user-management'));
+                }
+
 
              $user_id = $this->session->userdata('user_id');
             $data['user'] = $this->UserModel->find($user_id);

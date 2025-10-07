@@ -658,7 +658,7 @@
                     </div>
                     <p class="status-label">Total Users</p>
                 </div>
-                <h3 class="status-value"><?= count($getAll); ?></h3>
+                <h3 class="status-value"> <?= $total_users ?? '0' ?></h3>
             </div>
             
             <div class="status-card">
